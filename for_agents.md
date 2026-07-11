@@ -256,7 +256,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 |---|---|---|---|---|---|---|
 | T-0.1 | [x] | Gemini | Aggiungere `.gitignore` (`.DS_Store`, `node_modules/`, `*.log`, `/dist`) e rimuovere `.DS_Store` dal tracking | `git status` pulito, `.DS_Store` non più tracciato | Gemini | 2026-07-11 |
 | T-0.2 | [x] | Gemini | Creare cartelle mancanti: `fonts/`, `images/og`, `images/icons`, `partials/` (con `.gitkeep`) | Cartelle presenti | Gemini | 2026-07-11 |
-| T-0.3 | [ ] | Sonnet | Definire `build.mjs` opzionale per inline dei partial (§3.4 opzione A) — **solo scaffold**, documentato | Script che copia header/footer nelle pagine | | |
+| T-0.3 | [x] | Sonnet | Definire `build.mjs` opzionale per inline dei partial (§3.4 opzione A) — **solo scaffold**, documentato | Script che copia header/footer nelle pagine | Sonnet | 2026-07-11 |
 | T-0.4 | [ ] | Opus | Rivedere e confermare mappa pagine (§3.2) e mappa contenuti (§4) rispetto al docx; segnalare gap | Nota di conferma nel Changelog | | |
 
 ---
@@ -444,6 +444,17 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 - **DNS:** puntare `reflexora.ai` all'hosting Aruba; gestire `www` coerentemente con D-1.
 - **Nessun runtime server** (no Node/PHP necessario): il sito è 100% statico.
 
+### Build (opzionale) — inlining dei partial
+Prima del deploy FTP, eseguire da riga di comando nella root del progetto:
+```
+node build.mjs
+```
+Lo script legge `partials/header.html` e `partials/footer.html` e li inietta inline nelle pagine
+HTML della root tramite i marcatori `<!-- @include: header -->` / `<!-- @include: footer -->`.
+È **idempotente** (rilanciarlo non duplica il contenuto), non richiede dipendenze npm, e si
+interrompe con exit 0 se i partial non esistono ancora. Node è necessario solo in locale: sul
+server Aruba gira solo HTML statico.
+
 ---
 
 ## 10. GLOSSARIO (riferimento per contenuti e GEO)
@@ -467,7 +478,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 
 | Fase | Task totali | Completati | Stato |
 |---|---|---|---|
-| 0 Setup | 4 | 2 | 🔄 In corso |
+| 0 Setup | 4 | 3 | 🔄 In corso |
 | 1 Architettura | 6 | 0 | ⬜ Non iniziata |
 | 2 Design system | 5 | 0 | ⬜ Non iniziata |
 | 3 Contenuti | 9 | 0 | ⬜ Non iniziata |
@@ -499,5 +510,7 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 
 - 2026-07-11 · Gemini · T-0.1 · Creato `.gitignore` e rimosso `.DS_Store` dal tracking git.
 - 2026-07-11 · Gemini · T-0.2 · Create cartelle `fonts/`, `images/og/`, `images/icons/`, `partials/` con `.gitkeep`.
+
+- 2026-07-11 · Sonnet · T-0.3 · Creato `build.mjs` (inliner partial idempotente, zero deps npm); aggiunta nota Build in §9; testato con partial fittizi.
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
