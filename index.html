@@ -56,8 +56,8 @@
                 The world model predicts. The Policy Layer learns, plans, and selects. The Reflex Layer acts locally when waiting would be unsafe, inefficient, or energetically wasteful.
             </p>
             <div class="hero-actions">
-                <a href="#about" class="btn-primary">Discover the Architecture</a>
-                <a href="#technology" class="btn-secondary">Explore Technology</a>
+                <a href="/architecture" class="btn-primary">Discover the Architecture</a>
+                <a href="/technology" class="btn-secondary">Explore Technology</a>
             </div>
         </div>
         
@@ -79,25 +79,9 @@
             <p class="section-intro reveal" style="max-width: 800px; margin: 0 auto 2.5rem; text-align: center; font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,0.8);">
                 Advanced world models and policy models are essential for prediction, learning, planning, and complex choice. But not every physical event should wait for the richest available computation. Some events require a bounded local action before delay becomes unsafe, inefficient, or energetically wasteful.
             </p>
-            <div class="grid-2-col">
-                <div class="card glass-card reveal">
-                    <div class="card-icon reflex-icon"></div>
-                    <h3>The Reflex Layer</h3>
-                    <p>
-                        Executes only the first permitted action, verifies the physical response, and reports a compact event-action trace. It acts locally when waiting would be unsafe, inefficient, or energetically wasteful.
-                    </p>
-                </div>
-                <div class="card glass-card reveal-delay">
-                    <div class="card-icon policy-icon"></div>
-                    <h3>The Policy Layer</h3>
-                    <p>
-                        Separates the urgent local path from slower supervisory intelligence. The Policy Layer defines permissions, context, and rules, and remains responsible for learning, planning, and prediction.
-                    </p>
-                </div>
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="/architecture" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px;">Architecture <span aria-hidden="true">&rarr;</span></a>
             </div>
-            <p class="section-quote reveal" style="max-width: 700px; margin: 2.5rem auto 0; text-align: center; font-size: 1.15rem; font-weight: 600; line-height: 1.6; color: rgba(255,255,255,0.95); font-style: italic;">
-                Reflex–Policy separates the urgent local path from slower supervisory intelligence.
-            </p>
         </div>
     </section>
 
@@ -109,29 +93,10 @@
                 <p class="tech-text">
                     REFLEXORA complements neuromorphic, spintronic, in-memory, analog, digital, and conventional electronic technologies. These technologies can become implementation components at different layers. REFLEXORA determines where and how they should be used across the sensing–decision–energy–actuation chain.
                 </p>
-                <p class="tech-subtext" style="margin-bottom: 1.5rem;">
+                <p class="tech-subtext" style="margin-bottom: 2rem;">
                     The central design rule is simple: <strong>assign every physical event to the lowest sufficient layer that can act safely and correctly.</strong> This reduces unnecessary ADC conversion, communication, memory access, processor wake-up and central-policy workload.
                 </p>
-
-                <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem; color: #fff;">What the architecture enables</h3>
-                <ul class="features-list">
-                    <li><span class="bullet"></span> <strong>Lower latency</strong> — Urgent events can be handled near sensors and actuators without forcing every response through a complete model cycle.</li>
-                    <li><span class="bullet"></span> <strong>Lower bandwidth</strong> — High-frequency local events can be compressed into meaningful state changes and event traces.</li>
-                    <li><span class="bullet"></span> <strong>Energy-proportional intelligence</strong> — Computation, communication, and actuation can be matched to the value and urgency of each event.</li>
-                    <li><span class="bullet"></span> <strong>Bounded safety</strong> — Local actions operate within explicit permission envelopes, fallback states, and containment rules.</li>
-                    <li><span class="bullet"></span> <strong>Auditability</strong> — The system retains a compact link between event, permission, command, measured response, and result.</li>
-                    <li><span class="bullet"></span> <strong>Technology flexibility</strong> — The same architecture can be implemented with mature digital electronics today and with spintronic, neuromorphic, analog, or in-memory technologies where they add value.</li>
-                </ul>
-
-                <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.75rem; color: #fff;">Decision–Power Path Isolation</h3>
-                <p class="tech-subtext">
-                    The reflex module remains in the decision path. The principal energy remains in the power path. A small, low-energy rule signal controls a much larger physical action — like a pilot valve or railway switch — allowing reflex intelligence to be integrated with conventional and certifiable power electronics.
-                </p>
-
-                <h3 style="font-size: 1.15rem; margin: 1.5rem 0 0.75rem; color: #fff;">World Models as Teachers</h3>
-                <p class="tech-subtext">
-                    World models explore thousands of situations during simulation, training or periodic optimization. Their conclusions are converted into bounded binary rules, safe thresholds, permission maps and multilevel weight matrices. The world model does not need to remain in every urgent control loop.
-                </p>
+                <a href="/technology" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px;">Technology <span aria-hidden="true">&rarr;</span></a>
             </div>
             
             <div class="tech-visual glass-card reveal-delay">
@@ -159,17 +124,20 @@
             <h2 class="section-title center reveal">Application Areas</h2>
             <div class="grid-3-col">
                 <div class="app-card reveal">
-                    <h4>Robotics, Mobility & Autonomous Systems</h4>
+                    <h4>Robotics, Mobility &amp; Autonomous Systems</h4>
                     <p>Local impact, torque, and balance reflexes combined with predictive energy management and bounded local action for autonomous systems.</p>
                 </div>
                 <div class="app-card reveal" style="transition-delay: 100ms;">
-                    <h4>Energy Harvesting & Storage</h4>
+                    <h4>Energy Harvesting &amp; Storage</h4>
                     <p>Local PV shadow response and module-local battery reflex balancing, isolating faults under Battery Management System supervision.</p>
                 </div>
                 <div class="app-card reveal" style="transition-delay: 200ms;">
-                    <h4>Edge AI, IoT & Sensing</h4>
+                    <h4>Edge AI, IoT &amp; Sensing</h4>
                     <p>Always-on event detection, Spatial AI event-to-action contracts, and bio-inspired safety-critical edge systems.</p>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 2.5rem;">
+                <a href="/applications" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px;">Applications <span aria-hidden="true">&rarr;</span></a>
             </div>
         </div>
     </section>
@@ -182,6 +150,7 @@
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
                     REFLEXORA is supported by a coordinated series of scientific publications, manuscripts, and preprints designed to establish terminology, scientific visibility, conceptual priority, and a cross-domain research agenda for Reflex–Policy Physical AI. <br><br><strong>Current deposited portfolio:</strong> 12 Italian patent applications, 2 EPO applications, and 1 PCT application.
                 </p>
+                <a href="/research" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px;">Research &amp; Publications <span aria-hidden="true">&rarr;</span></a>
             </div>
         </div>
     </section>
@@ -196,6 +165,9 @@
             <p style="font-size: 1.25rem; font-weight: 700; color: #fff;">
                 REFLEXORA brings intelligence closer to the event - not by replacing advanced AI, but by ensuring that every physical action is handled by the lowest sufficient layer, with the right authority, energy, and evidence.
             </p>
+            <div style="margin-top: 2rem;">
+                <a href="/company" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px;">Company <span aria-hidden="true">&rarr;</span></a>
+            </div>
         </div>
     </section>
     </main>
