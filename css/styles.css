@@ -55,6 +55,7 @@ html {
 
 body {
     overflow-x: hidden;
+    font-size: var(--fs-body);
 }
 
 /* Typography */
@@ -534,7 +535,7 @@ section {
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: var(--fs-h2);
     margin-bottom: 3rem;
 }
 
