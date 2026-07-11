@@ -317,11 +317,11 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 
 | ID | Stato | Agente cons. | Task | Criterio di completamento | Agente | Data |
 |---|---|---|---|---|---|---|
-| T-2.1 | [ ] | Sonnet | Consolidare i token in `:root` (colori §5.1, spaziatura §5.3, radius, ombre, z-index) | Nessun valore "magico" ripetuto nel CSS delle sezioni | | |
-| T-2.2 | [ ] | Sonnet | Introdurre scala tipografica fluida con `clamp()` per h1–h4 e body | Tipografia scala senza scatti tra 320px e 1920px | | |
+| T-2.1 | [ ] | Gemini | Definire i token in `:root` (spaziatura §5.3, radius, ombre, z-index) e tokenizzare lo z-index della navbar. **Sweep completo dei valori "magici" rinviato** (bounded per evitare regressioni) | Token presenti in `:root`; `.navbar` usa `var(--z-nav)`; nessuna regressione visiva | | |
+| T-2.2 | [ ] | Gemini | Introdurre scala tipografica fluida con `clamp()` (token `--fs-*`) e applicarla a `.section-title` e `body`; `.hero-title` resta governata da T-2.6 | Tipografia scala senza scatti tra 320px e 1920px; body ≥16px a 375px | | |
 | T-2.3 | [ ] | Gemini | Sostituire gli stili inline presenti in `index.html` con classi/utility | Zero `style="..."` non giustificati nelle pagine | | |
 | T-2.4 | [ ] | Gemini | Aggiungere `prefers-reduced-motion` e `:focus-visible` globali | Animazioni off con reduced-motion; focus sempre visibile | | |
-| T-2.6 | [ ] | Sonnet | **Convertire il CSS legacy da desktop-first a mobile-first (§5.0).** In `css/styles.css` esistono ancora query desktop-first `@media (max-width: 900px)` e `@media (max-width: 600px)` (ereditate dalla landing originale, righe ~802/815): riscrivere quei blocchi come base mobile + `@media (min-width: …)` in salita, senza cambiare la resa finale su desktop | Nessuna `max-width` media query residua per il layout; sito identico a desktop, corretto a 375px | | |
+| T-2.6 | [ ] | Gemini | **Convertire il CSS legacy da desktop-first a mobile-first (§5.0).** In `css/styles.css` esistono ancora query desktop-first `@media (max-width: 900px)` e `@media (max-width: 600px)` (ereditate dalla landing originale, righe ~802/815): riscrivere quei blocchi come base mobile + `@media (min-width: …)` in salita, senza cambiare la resa finale su desktop | Nessuna `max-width` media query residua per il layout; sito identico a desktop, corretto a 375px | | |
 | T-2.5 | [ ] | Opus | Review design system: coerenza, gerarchia visiva, densità, "claim discipline" visiva (niente over-promise grafico), **coerenza mobile-first** | Nota di review + eventuali fix nel Changelog | | |
 
 ---
@@ -562,6 +562,8 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Opus 4.6 · T-0.4 · Review mappa pagine/contenuti vs fonti. Corretti: Research (aggiunto articolo peer-reviewed Symmetry + portfolio completo), Technology (aggiunta fonte Reflex Policy PDF), Applications (8 domini non 5), Home (aggiunto "What REFLEXORA is"), aggiunta disciplina novità. Flag: EU grant da verificare. Report completo in artifact t04_review.md.
 
 - 2026-07-11 · Opus (root) · — · Verificato lavoro Fase 0 (Gemini T-0.1/0.2, Sonnet T-0.3, Opus T-0.4): OK. Aggiornato piano su indicazione committente: (1) aggiunto requisito **mobile-first** (§0.8, §1, §5.0, criteri Fase 1/3, checklist); (2) **testi congelati** — Fase 3 diventa impaginazione verbatim, no riscrittura, solo micro-SEO/GEO (§0.9); (3) **Patents & IP rinviata** — rimossa da nav/scaffold/Fase 3/FAQ (§0.10); Fase 3 ora 8 task.
+
+- 2026-07-11 · Opus (root) · — · Verificata Fase 1 (Gemini T-1.1/1.2/1.3/1.5, Sonnet T-1.4/1.6): OK, §0.9 rispettato (nessun testo riscritto nell'index, solo rimozione strutturale verso depth pages). Riassegnati T-2.1/T-2.2/T-2.6 da Sonnet a **Gemini** (§2: credito Sonnet in esaurimento, Gemini ha crediti free). T-2.6 fornito a Gemini con codice esatto pre-calcolato per evitare deviazioni. T-2.1 ridotto (sweep valori magici rinviato).
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
 - 2026-07-11 · Gemini · T-1.1 · Estratti header e footer in partials/ e inlinati in index.html tramite build.mjs.
