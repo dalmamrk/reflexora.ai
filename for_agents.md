@@ -321,7 +321,8 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | T-2.2 | [ ] | Sonnet | Introdurre scala tipografica fluida con `clamp()` per h1–h4 e body | Tipografia scala senza scatti tra 320px e 1920px | | |
 | T-2.3 | [ ] | Gemini | Sostituire gli stili inline presenti in `index.html` con classi/utility | Zero `style="..."` non giustificati nelle pagine | | |
 | T-2.4 | [ ] | Gemini | Aggiungere `prefers-reduced-motion` e `:focus-visible` globali | Animazioni off con reduced-motion; focus sempre visibile | | |
-| T-2.5 | [ ] | Opus | Review design system: coerenza, gerarchia visiva, densità, "claim discipline" visiva (niente over-promise grafico) | Nota di review + eventuali fix nel Changelog | | |
+| T-2.6 | [ ] | Sonnet | **Convertire il CSS legacy da desktop-first a mobile-first (§5.0).** In `css/styles.css` esistono ancora query desktop-first `@media (max-width: 900px)` e `@media (max-width: 600px)` (ereditate dalla landing originale, righe ~802/815): riscrivere quei blocchi come base mobile + `@media (min-width: …)` in salita, senza cambiare la resa finale su desktop | Nessuna `max-width` media query residua per il layout; sito identico a desktop, corretto a 375px | | |
+| T-2.5 | [ ] | Opus | Review design system: coerenza, gerarchia visiva, densità, "claim discipline" visiva (niente over-promise grafico), **coerenza mobile-first** | Nota di review + eventuali fix nel Changelog | | |
 
 ---
 
@@ -525,7 +526,7 @@ server Aruba gira solo HTML statico.
 |---|---|---|---|
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 4 | 🔄 In corso |
-| 2 Design system | 5 | 0 | ⬜ Non iniziata |
+| 2 Design system | 6 | 0 | ⬜ Non iniziata |
 | 3 Contenuti | 8 | 0 | ⬜ Non iniziata (T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
