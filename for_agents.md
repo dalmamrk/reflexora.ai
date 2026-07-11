@@ -168,11 +168,11 @@ dove indicato, adattando solo per web (heading, liste).
 
 | Pagina | Contenuti chiave | Fonte |
 |---|---|---|
-| Home | Hero + supporting line, "What REFLEXORA is", "Why Reflex–Policy", "A complementary architecture", "What the architecture enables", teaser applicazioni/IP, closing statement | docx §8 |
-| Architecture | Event-to-action partitioning, Bounded authority, Measured closure, Compact observability, Energy proportionality (EROIE), World model as teacher | docx §4 |
-| Technology | Complementarità (neuromorfico/spintronico/in-memory/analog/digitale), binary vs multilevel spintronics, Decision–Power Path Isolation, World Models as Teachers | docx §5 + Overview.txt |
-| Applications | Robotica & humanoids, automotive/autonomous, energy harvesting (PV shadow), energy storage (battery reflex), edge & IoT | docx "Application domains" + Overview.txt |
-| Research | Due Perspective paper, preprint su Preprints.org, terminologia, agenda di ricerca. **Claim discipline** (§7 docx: risultati = simulazioni/stime finché non validati) | docx §6, §7 |
+| Home | Hero + supporting line, **"What REFLEXORA is"** (paragrafo identitario distinto, docx §8), "Why Reflex–Policy", "A complementary architecture", "What the architecture enables", teaser applicazioni/IP, closing statement | docx §8 |
+| Architecture | Event-to-action partitioning, Bounded authority, Measured closure, Compact observability, Energy proportionality (EROIE), World model as teacher. **Quantitative Architecture** (metriche di sistema: latenza, throughput, bandwidth, EROIE) | docx §4 + Overview.txt ("Quantitative Architecture") + Reflex Policy PDF §7 |
+| Technology | Complementarità (neuromorfico/spintronico/in-memory/analog/digitale), binary vs multilevel spintronics, Decision–Power Path Isolation, World Models as Teachers, **comparazione con MCU/FPGA/neuromorfico** (Table 2), **esempi quantitativi latenza/throughput/bandwidth** (Table 3) | docx §5 + Overview.txt + **Reflex Policy PDF §§2–4, 6** |
+| Applications | **8 domini applicativi** (docx §8): robotica, mobilità, sistemi autonomi, energy harvesting (PV shadow), energy storage (battery reflex), sensing, edge AI, IoT. Home: 3 card sintetiche; pagina depth: copertura completa degli 8 domini con claim discipline | docx §8 "Application domains" + Overview.txt + Reflex Policy PDF §5 |
+| Research | **Articolo peer-reviewed** (Symmetry 2026, S7: bio-inspired edge AI), **due Perspective paper** (Physical AI / Reflex Policy, S2/S3), **prospettive Spatial AI e preprint** (S4/S5/S6 su Preprints.org), terminologia, agenda di ricerca, **glossario** (EROIE, Reflex Layer, Policy Layer, event-action trace, bounded authority, measured closure, compact observability). **Claim discipline** (§7 docx: risultati = simulazioni/stime finché non validati). ⚠️ DA VERIFICARE: riferimento EU grant EIC Pathfinder MultiSpin.AI (grant 101130046) — presente nei PDF, verificare se menzionarlo sul sito | docx §6, §7 + tutti i PDF |
 | Patents & IP | **12 domande di brevetto italiane, 2 EPO, 1 PCT** (tutte "deposited applications", non concesse). Tabella con status, aggiornabile. ⚠️ Rimuovere il vecchio "8 patent families". | docx §2, §8 |
 | Company | REFLEXORA = divisione di ricerca IFEVS; posizionamento per investimento; transizione a società indipendente. Paragrafo corporate autorevole = docx §12. Rapporto con IFEVS (ifevs.com) | docx §2, §8, §12 |
 | Contact | Email `contact@reflexora.ai`, invito partnership | index attuale |
@@ -180,6 +180,9 @@ dove indicato, adattando solo per web (heading, liste).
 **Correzioni fattuali obbligatorie (docx §2):**
 - ❌ NON dire che REFLEXORA è già società indipendente → ✅ "research division of IFEVS … intended to become an independent company".
 - ❌ Rimuovere ogni riferimento a "eight patents / patent families" → ✅ portfolio 12 IT + 2 EPO + 1 PCT, tutte *deposited applications*.
+
+**Disciplina della novità (docx §7):**
+- ❌ NON affermare che il controllo gerarchico sia nuovo → ✅ la novità è: event contract esplicito, bounded authority, physical feedback, observability, energy accounting, e gli embodiment architetturali cross-domain protetti da brevetto.
 
 ---
 
@@ -257,7 +260,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | T-0.1 | [x] | Gemini | Aggiungere `.gitignore` (`.DS_Store`, `node_modules/`, `*.log`, `/dist`) e rimuovere `.DS_Store` dal tracking | `git status` pulito, `.DS_Store` non più tracciato | Gemini | 2026-07-11 |
 | T-0.2 | [x] | Gemini | Creare cartelle mancanti: `fonts/`, `images/og`, `images/icons`, `partials/` (con `.gitkeep`) | Cartelle presenti | Gemini | 2026-07-11 |
 | T-0.3 | [x] | Sonnet | Definire `build.mjs` opzionale per inline dei partial (§3.4 opzione A) — **solo scaffold**, documentato | Script che copia header/footer nelle pagine | Sonnet | 2026-07-11 |
-| T-0.4 | [ ] | Opus | Rivedere e confermare mappa pagine (§3.2) e mappa contenuti (§4) rispetto al docx; segnalare gap | Nota di conferma nel Changelog | | |
+| T-0.4 | [x] | Opus | Rivedere e confermare mappa pagine (§3.2) e mappa contenuti (§4) rispetto al docx; segnalare gap | Nota di conferma nel Changelog | Opus 4.6 | 2026-07-11 |
 
 ---
 
@@ -478,7 +481,7 @@ server Aruba gira solo HTML statico.
 
 | Fase | Task totali | Completati | Stato |
 |---|---|---|---|
-| 0 Setup | 4 | 3 | 🔄 In corso |
+| 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 0 | ⬜ Non iniziata |
 | 2 Design system | 5 | 0 | ⬜ Non iniziata |
 | 3 Contenuti | 9 | 0 | ⬜ Non iniziata |
@@ -512,5 +515,7 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Gemini · T-0.2 · Create cartelle `fonts/`, `images/og/`, `images/icons/`, `partials/` con `.gitkeep`.
 
 - 2026-07-11 · Sonnet · T-0.3 · Creato `build.mjs` (inliner partial idempotente, zero deps npm); aggiunta nota Build in §9; testato con partial fittizi.
+
+- 2026-07-11 · Opus 4.6 · T-0.4 · Review mappa pagine/contenuti vs fonti. Corretti: Research (aggiunto articolo peer-reviewed Symmetry + portfolio completo), Technology (aggiunta fonte Reflex Policy PDF), Applications (8 domini non 5), Home (aggiunto "What REFLEXORA is"), aggiunta disciplina novità. Flag: EU grant da verificare. Report completo in artifact t04_review.md.
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
