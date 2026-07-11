@@ -338,8 +338,8 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 |---|---|---|---|---|---|---|
 | T-3.1 | [ ] | Gemini | Impaginare **Home** col copy docx §8 verbatim (hero, "What REFLEXORA is", why, complementary, enables, teaser, closing) | Home completa, testo = docx **invariato**, link interni attivi, ok a 375px | | |
 | T-3.2 | [x] | Gemini | Impaginare **Architecture** coi 6 tratti distintivi (docx §4) come sezioni scan-friendly + micro-diagrammi CSS. Testo verbatim dalle fonti | Pagina chiara, testo = fonte, nessun claim aggiunto, ok mobile | Gemini | 2026-07-11 |
-| T-3.3 | [ ] | Gemini | Impaginare **Technology** (complementarità, binary vs multilevel spintronics, decision–power isolation) dal copy fonte | Contenuto = fonte, tono sobrio, ok mobile | | |
-| T-3.4 | [ ] | Gemini | Impaginare **Applications** — **8 domini** (docx §8: robotica, mobilità, sistemi autonomi, PV, storage, sensing, edge AI, IoT) come griglia di card 1-col mobile → 2/3-col desktop | 8 card con testo da fonte, griglia responsive | | |
+| T-3.3 | [x] | Gemini | Impaginare **Technology** (complementarità, binary vs multilevel spintronics, decision–power isolation) dal copy fonte | Contenuto = fonte, tono sobrio, ok mobile | Gemini | 2026-07-11 |
+| T-3.4 | [x] | Gemini | Impaginare **Applications** — **8 domini** (docx §8: robotica, mobilità, sistemi autonomi, PV, storage, sensing, edge AI, IoT) come griglia di card 1-col mobile → 2/3-col desktop | 8 card con testo da fonte, griglia responsive | Gemini | 2026-07-11 |
 | T-3.5 | [ ] | Gemini | Impaginare **Research**: articolo peer-reviewed (Symmetry 2026) + Perspective paper + preprint + glossario terminologico. Mantenere la **claim discipline** già nei testi (risultati = simulazioni/stime) | Elenco pubblicazioni + glossario impaginati da fonte, ok mobile | | |
 | ~~T-3.6~~ | [⏸ RINVIATO] | — | **Patents & IP — RINVIATA (§0.10).** Non implementare in questa fase | — | — | — |
 | T-3.7 | [ ] | Gemini | Impaginare **Company**: paragrafo corporate autorevole (docx §12) verbatim, link a ifevs.com | Testo = docx §12 invariato, link a IFEVS, ok mobile | | |
@@ -527,7 +527,7 @@ server Aruba gira solo HTML statico.
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 6 | ✅ Completata |
 | 2 Design system | 6 | 6 | ✅ Completata |
-| 3 Contenuti | 8 | 1 | 🔄 In corso (T-3.6 Patents rinviata) |
+| 3 Contenuti | 8 | 3 | 🔄 In corso (T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
 | 6 GEO | 6 | 0 | ⬜ Non iniziata |
@@ -580,3 +580,5 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Gemini · T-2.4 · Aggiunti stili per reduced-motion e focus-visible.
 - 2026-07-11 · Gemini · T-2.3 · Rimpiazzati gli stili inline in index.html con classi utility in styles.css.
 - 2026-07-11 · Gemini · T-3.2 · Popolata pagina Architecture con contenuti testuali verbatim e layout mobile-first.
+- 2026-07-11 · Gemini · T-3.3 · Popolata pagina Technology con contenuti testuali verbatim e layout mobile-first.
+- 2026-07-11 · Gemini · T-3.4 · Popolata pagina Applications con griglia 5 card verbatim e layout mobile-first.
