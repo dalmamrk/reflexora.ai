@@ -787,6 +787,24 @@ section {
     max-width: 300px;
 }
 
+/* Logo link + footer affiliation (moved from inline styles, T-2.5) */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-affiliation {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-affiliation a {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
 .contact-info h4 {
     color: #fff;
 }
@@ -804,25 +822,27 @@ section {
 }
 
 /* Scroll Animations */
-.reveal {
+/* Scroll-reveal: hidden state applies ONLY when JS is active (.js on <html>).
+   Without JS, content stays fully visible — critical for crawlers/GEO and no-JS. (T-2.5) */
+.js .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease;
 }
 
-.reveal.active {
+.js .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-.reveal-delay {
+.js .reveal-delay {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease;
     transition-delay: 0.3s;
 }
 
-.reveal-delay.active {
+.js .reveal-delay.active {
     opacity: 1;
     transform: translateY(0);
 }

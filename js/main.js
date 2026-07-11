@@ -1,3 +1,7 @@
+// Signal that JS is active so scroll-reveal hidden states apply (see styles.css .js .reveal).
+// Without this class, content is visible by default (no-JS / crawler safe).
+document.documentElement.classList.add('js');
+
 // Navbar Scroll Effect
 const navbar = document.querySelector('.navbar');
 

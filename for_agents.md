@@ -322,7 +322,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | T-2.3 | [x] | Gemini | Sostituire gli stili inline presenti in `index.html` con classi/utility | Zero `style="..."` non giustificati nelle pagine | Gemini | 2026-07-11 |
 | T-2.4 | [x] | Gemini | Aggiungere `prefers-reduced-motion` e `:focus-visible` globali | Animazioni off con reduced-motion; focus sempre visibile | Gemini | 2026-07-11 |
 | T-2.6 | [x] | Gemini | **Convertire il CSS legacy da desktop-first a mobile-first (§5.0).** In `css/styles.css` esistono ancora query desktop-first `@media (max-width: 900px)` e `@media (max-width: 600px)` (ereditate dalla landing originale, righe ~802/815): riscrivere quei blocchi come base mobile + `@media (min-width: …)` in salita, senza cambiare la resa finale su desktop | Nessuna `max-width` media query residua per il layout; sito identico a desktop, corretto a 375px | Gemini | 2026-07-11 |
-| T-2.5 | [ ] | Opus | Review design system: coerenza, gerarchia visiva, densità, "claim discipline" visiva (niente over-promise grafico), **coerenza mobile-first** | Nota di review + eventuali fix nel Changelog | | |
+| T-2.5 | [x] | Opus→Claude Code | Review design system: coerenza, gerarchia visiva, densità, "claim discipline" visiva (niente over-promise grafico), **coerenza mobile-first** | Nota di review + eventuali fix nel Changelog | Claude Code (root) | 2026-07-11 |
 
 ---
 
@@ -526,7 +526,7 @@ server Aruba gira solo HTML statico.
 |---|---|---|---|
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 6 | ✅ Completata |
-| 2 Design system | 6 | 5 | 🔄 In corso |
+| 2 Design system | 6 | 6 | ✅ Completata |
 | 3 Contenuti | 8 | 0 | ⬜ Non iniziata (T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
@@ -564,6 +564,8 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Opus (root) · — · Verificato lavoro Fase 0 (Gemini T-0.1/0.2, Sonnet T-0.3, Opus T-0.4): OK. Aggiornato piano su indicazione committente: (1) aggiunto requisito **mobile-first** (§0.8, §1, §5.0, criteri Fase 1/3, checklist); (2) **testi congelati** — Fase 3 diventa impaginazione verbatim, no riscrittura, solo micro-SEO/GEO (§0.9); (3) **Patents & IP rinviata** — rimossa da nav/scaffold/Fase 3/FAQ (§0.10); Fase 3 ora 8 task.
 
 - 2026-07-11 · Opus (root) · — · Verificata Fase 1 (Gemini T-1.1/1.2/1.3/1.5, Sonnet T-1.4/1.6): OK, §0.9 rispettato (nessun testo riscritto nell'index, solo rimozione strutturale verso depth pages). Riassegnati T-2.1/T-2.2/T-2.6 da Sonnet a **Gemini** (§2: credito Sonnet in esaurimento, Gemini ha crediti free). T-2.6 fornito a Gemini con codice esatto pre-calcolato per evitare deviazioni. T-2.1 ridotto (sweep valori magici rinviato).
+
+- 2026-07-11 · Claude Code (root, al posto di Opus per quota esaurita) · T-2.5 · **Review design system Fase 2 + 2 fix.** ESITO: (a) token/tipografia fluida/mobile-first applicati e fedeli su desktop; (b) contrasto testo secondario #94a3b8 su #070a13 ≈ 7.7:1 → supera WCAG AAA; (c) tap target 44px e bottoni full-width mobile OK; (d) contenuti resi correttamente in tutte le sezioni (verifica DOM: about, technology, 3 app-card, footer); (e) "claim discipline" visiva OK — i visual (neural sphere, crossbar) sono astratti, non implicano dati misurati. FIX APPLICATI: (1) `refactor(css): move partial inline styles to classes` — spostati i 3 inline residui dei partial (logo, footer affiliation IFEVS) in classi `.logo-link`/`.footer-affiliation`, rigenerato con build.mjs; (2) `fix(a11y/seo): gate scroll-reveal hidden state behind .js class` — prima `.reveal{opacity:0}` nascondeva il contenuto SENZA JS (rischio per crawler/GEO e no-JS); ora lo stato nascosto è sotto `.js` (aggiunta `document.documentElement.classList.add('js')` in main.js) → contenuto visibile di default, animato solo con JS. Verificato: hero visibile con JS attivo; fallback no-JS visibile. NB: lo scroll-reveal below-fold non è verificabile nel browser di preview (IntersectionObserver non emette callback in quell'ambiente) ma è corretto per costruzione e funziona nei browser reali. NOTA MINORE: le 6 pagine depth hanno ancora 1 stile inline scaffold (`<main style=...>`) ciascuna → verranno sostituite in Fase 3.
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
 - 2026-07-11 · Gemini · T-1.1 · Estratti header e footer in partials/ e inlinati in index.html tramite build.mjs.
