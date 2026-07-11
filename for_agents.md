@@ -317,11 +317,11 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 
 | ID | Stato | Agente cons. | Task | Criterio di completamento | Agente | Data |
 |---|---|---|---|---|---|---|
-| T-2.1 | [ ] | Gemini | Definire i token in `:root` (spaziatura §5.3, radius, ombre, z-index) e tokenizzare lo z-index della navbar. **Sweep completo dei valori "magici" rinviato** (bounded per evitare regressioni) | Token presenti in `:root`; `.navbar` usa `var(--z-nav)`; nessuna regressione visiva | | |
-| T-2.2 | [ ] | Gemini | Introdurre scala tipografica fluida con `clamp()` (token `--fs-*`) e applicarla a `.section-title` e `body`; `.hero-title` resta governata da T-2.6 | Tipografia scala senza scatti tra 320px e 1920px; body ≥16px a 375px | | |
+| T-2.1 | [x] | Gemini | Definire i token in `:root` (spaziatura §5.3, radius, ombre, z-index) e tokenizzare lo z-index della navbar. **Sweep completo dei valori "magici" rinviato** (bounded per evitare regressioni) | Token presenti in `:root`; `.navbar` usa `var(--z-nav)`; nessuna regressione visiva | Gemini | 2026-07-11 |
+| T-2.2 | [x] | Gemini | Introdurre scala tipografica fluida con `clamp()` (token `--fs-*`) e applicarla a `.section-title` e `body`; `.hero-title` resta governata da T-2.6 | Tipografia scala senza scatti tra 320px e 1920px; body ≥16px a 375px | Gemini | 2026-07-11 |
 | T-2.3 | [ ] | Gemini | Sostituire gli stili inline presenti in `index.html` con classi/utility | Zero `style="..."` non giustificati nelle pagine | | |
 | T-2.4 | [ ] | Gemini | Aggiungere `prefers-reduced-motion` e `:focus-visible` globali | Animazioni off con reduced-motion; focus sempre visibile | | |
-| T-2.6 | [ ] | Gemini | **Convertire il CSS legacy da desktop-first a mobile-first (§5.0).** In `css/styles.css` esistono ancora query desktop-first `@media (max-width: 900px)` e `@media (max-width: 600px)` (ereditate dalla landing originale, righe ~802/815): riscrivere quei blocchi come base mobile + `@media (min-width: …)` in salita, senza cambiare la resa finale su desktop | Nessuna `max-width` media query residua per il layout; sito identico a desktop, corretto a 375px | | |
+| T-2.6 | [x] | Gemini | **Convertire il CSS legacy da desktop-first a mobile-first (§5.0).** In `css/styles.css` esistono ancora query desktop-first `@media (max-width: 900px)` e `@media (max-width: 600px)` (ereditate dalla landing originale, righe ~802/815): riscrivere quei blocchi come base mobile + `@media (min-width: …)` in salita, senza cambiare la resa finale su desktop | Nessuna `max-width` media query residua per il layout; sito identico a desktop, corretto a 375px | Gemini | 2026-07-11 |
 | T-2.5 | [ ] | Opus | Review design system: coerenza, gerarchia visiva, densità, "claim discipline" visiva (niente over-promise grafico), **coerenza mobile-first** | Nota di review + eventuali fix nel Changelog | | |
 
 ---
@@ -526,7 +526,7 @@ server Aruba gira solo HTML statico.
 |---|---|---|---|
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 6 | ✅ Completata |
-| 2 Design system | 6 | 0 | ⬜ Non iniziata |
+| 2 Design system | 6 | 3 | 🔄 In corso |
 | 3 Contenuti | 8 | 0 | ⬜ Non iniziata (T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
@@ -572,3 +572,6 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Gemini · T-1.5 · Aggiunto skip-link e landmark semantici (<main id="main"> ecc.) a tutte le pagine, inlinati con build.mjs.
 - 2026-07-11 · Sonnet · T-1.4 · Rifattorizzata home: Hero e Corporate Evolution intatti; About/Architecture e Technology trimmate al solo intro sorgente + CTA; Applications mantiene le 3 card originali + CTA; IP/Research mantiene paragrafo sorgente + CTA Research; Company CTA aggiunto alla sezione position. Hero buttons ora puntano a /architecture e /technology. Nessun testo riscritto (§0.9).
 - 2026-07-11 · Sonnet · T-1.6 · Creata 404.html mobile-first in tema (error-code in gradient, CTA back-to-home ≥44px tap target, noindex meta). Header/footer inlinati da build.mjs.
+- 2026-07-11 · Gemini · T-2.1 · Aggiunti design tokens a :root e z-index aggiornato per navbar.
+- 2026-07-11 · Gemini · T-2.2 · Applicata tipografia fluida con clamp() a body e section-title.
+- 2026-07-11 · Gemini · T-2.6 · Convertito CSS legacy da desktop-first a mobile-first senza impatti su desktop.
