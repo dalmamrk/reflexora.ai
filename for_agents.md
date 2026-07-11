@@ -305,7 +305,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | ID | Stato | Agente cons. | Task | Criterio di completamento | Agente | Data |
 |---|---|---|---|---|---|---|
 | T-1.1 | [x] | Gemini | Estrarre header (navbar) e footer attuali in `partials/header.html` e `partials/footer.html` | I due partial rendono identici all'attuale index | Gemini | 2026-07-11 |
-| T-1.2 | [ ] | Gemini | Aggiornare la navbar: link alle pagine **attive** (Architecture, Technology, Applications, Research, Company, Contact — **NO Patents, §0.10**), stato "active" per pagina corrente, **menu hamburger mobile-first** (§5.0). Ordine coerente con gerarchia messaggi docx §10 | Nav mobile (hamburger, tap ≥44px) e desktop; evidenzia pagina corrente; nessun link a patents | | |
+| T-1.2 | [x] | Gemini | Aggiornare la navbar: link alle pagine **attive** (Architecture, Technology, Applications, Research, Company, Contact — **NO Patents, §0.10**), stato "active" per pagina corrente, **menu hamburger mobile-first** (§5.0). Ordine coerente con gerarchia messaggi docx §10 | Nav mobile (hamburger, tap ≥44px) e desktop; evidenzia pagina corrente; nessun link a patents | Gemini | 2026-07-11 |
 | T-1.3 | [ ] | Gemini | Creare gli scheletri HTML di **6 pagine**: `architecture/technology/applications/research/company/contact`, con header/footer inclusi (marcatori build) e `<main>` vuoto. **NON creare `patents.html`** | 6 pagine caricano con nav+footer, nessun 404 interno, nessuna patents.html | | |
 | T-1.4 | [ ] | Sonnet | Rifattorizzare `index.html`: sezioni sintetiche che rimandano alle pagine dedicate (CTA "Learn more →"). **Non riscrivere i testi (§0.9)**, solo strutturare e linkare | Home coerente, ogni sezione linka alla pagina di profondità; corpo testo invariato | | |
 | T-1.5 | [ ] | Gemini | Aggiungere skip-link "Skip to content" e landmark ARIA (`<header> <nav> <main> <footer>`) a tutte le pagine | Skip-link funzionante, landmark presenti su ogni pagina | | |
@@ -564,3 +564,4 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
 - 2026-07-11 · Gemini · T-1.1 · Estratti header e footer in partials/ e inlinati in index.html tramite build.mjs.
+- 2026-07-11 · Gemini · T-1.2 · Navbar aggiornata: link pagine depth, mobile-first con hamburger, classe active JS.
