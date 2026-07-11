@@ -845,3 +845,18 @@ section {
     .tech-container { flex-direction: row; }
     .footer-content { flex-direction: row; }
 }
+
+/* Accessibility: rispetta la preferenza reduced-motion (T-2.4) */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* Accessibility: focus da tastiera sempre visibile (T-2.4) */
+:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+}
