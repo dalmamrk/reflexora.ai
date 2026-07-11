@@ -33,6 +33,19 @@ Queste regole valgono per **ogni** agente, a **ogni** intervento.
    è la revisione più recente e prevale sui testi precedenti.
 7. **Non lasciare mai il sito rotto tra un task e l'altro.** Ogni commit deve produrre un sito
    che carica e naviga.
+8. **MOBILE-FIRST (requisito trasversale).** Il sito si progetta e si scrive **prima per mobile**
+   (viewport 320–430px), poi si scala verso tablet/desktop con media query `min-width`. Ogni CSS
+   nuovo parte dallo stile mobile come base; le media query aggiungono, non correggono. Ogni pagina
+   creata o modificata va verificata a **375px** prima di considerarsi conclusa: niente overflow
+   orizzontale, tap target ≥ 44×44px, testo leggibile senza zoom. Vedi §5.0.
+9. **BLOCCO CONTENUTI (fase attuale).** I testi forniti (docx §8 e fonti in `per testi/`) sono
+   **congelati**: gli agenti li **impaginano verbatim**, NON li riscrivono. Sono ammessi **solo
+   micro-aggiustamenti per SEO/GEO** — `title`, `meta description`, gerarchia heading, `alt`,
+   ordine/etichette per scansionabilità — **senza alterare il senso o il wording del corpo testo**.
+   Qualsiasi proposta di riscrittura va portata al committente, non eseguita.
+10. **BREVETTI RINVIATI.** La pagina **Patents & IP non fa parte di questa fase**: verrà aggiunta
+    più avanti. Non creare `patents.html`, non inserirla in nav/sitemap, non redigere tabelle
+    brevetti ora. I task collegati restano marcati `[⏸ RINVIATO]` (vedi §3.2 e Fase 3).
 
 ### Legenda stato
 | Simbolo | Significato |
@@ -58,6 +71,8 @@ società indipendente. Il sito deve parlare a tre pubblici, in quest'ordine di p
 **Principi guida del progetto**
 - Chiarezza deep-tech, non hype. Tono sobrio, autorevole, "claim discipline" (§7 del docx:
   usare il denominatore più conservativo finché la validazione sperimentale non è consolidata).
+- **Mobile-first:** la maggioranza dei visitatori (e molti crawler) valuta prima la resa mobile.
+  Progettare e scrivere CSS partendo dal mobile; desktop è un'estensione (§0.8, §5.0).
 - Performance e accessibilità come requisiti, non optional.
 - Manutenibilità: le sezioni che cambiano (IP, pubblicazioni) devono essere facili da aggiornare.
 
@@ -95,7 +110,7 @@ profondità SEO/GEO. Niente over-engineering.
 /technology           technology.html    Complementarità tecnologica, spintronica, decision–power isolation
 /applications         applications.html  Domini applicativi (robotica, mobility, PV, storage, edge/IoT)
 /research             research.html      Fondamento scientifico: perspective papers, preprint, terminologia
-/patents              patents.html       Brevetti & IP — pagina mantenuta/aggiornata separatamente
+[⏸ RINVIATO] /patents  patents.html       Brevetti & IP — NON in questa fase (§0.10), aggiunta futura
 /company              company.html       Evoluzione corporate, rapporto con IFEVS, traiettoria societaria
 /contact              contact.html       Contatti / partnership
 /privacy              privacy.html       Privacy policy (GDPR)
@@ -166,6 +181,14 @@ Fonte autorevole: `per testi/REFLEXORA_Corporate_Positioning_and_Website_Revisio
 Il §8 di quel documento ("Recommended website copy") fornisce il copy ufficiale. Usarlo verbatim
 dove indicato, adattando solo per web (heading, liste).
 
+> **⚠️ SCOPE DELLA FASE ATTUALE (leggere — regole §0.9 e §0.10)**
+> - **Testi congelati:** impaginare il copy fornito **verbatim**. NON riscrivere il corpo testo.
+>   Ammessi solo micro-aggiustamenti SEO/GEO (title, meta, heading, alt, ordine liste).
+> - **Patents & IP RINVIATA:** la riga "Patents & IP" qui sotto resta come riferimento per il
+>   futuro ma **non va implementata ora**. Nessuna `patents.html`, nessun contenuto brevetti.
+> - Le analisi di Opus (T-0.4) su Symmetry, 8 domini, fonti PDF restano valide **come mappa**,
+>   ma si applicano impaginando i testi esistenti, non generandone di nuovi.
+
 | Pagina | Contenuti chiave | Fonte |
 |---|---|---|
 | Home | Hero + supporting line, **"What REFLEXORA is"** (paragrafo identitario distinto, docx §8), "Why Reflex–Policy", "A complementary architecture", "What the architecture enables", teaser applicazioni/IP, closing statement | docx §8 |
@@ -173,7 +196,7 @@ dove indicato, adattando solo per web (heading, liste).
 | Technology | Complementarità (neuromorfico/spintronico/in-memory/analog/digitale), binary vs multilevel spintronics, Decision–Power Path Isolation, World Models as Teachers, **comparazione con MCU/FPGA/neuromorfico** (Table 2), **esempi quantitativi latenza/throughput/bandwidth** (Table 3) | docx §5 + Overview.txt + **Reflex Policy PDF §§2–4, 6** |
 | Applications | **8 domini applicativi** (docx §8): robotica, mobilità, sistemi autonomi, energy harvesting (PV shadow), energy storage (battery reflex), sensing, edge AI, IoT. Home: 3 card sintetiche; pagina depth: copertura completa degli 8 domini con claim discipline | docx §8 "Application domains" + Overview.txt + Reflex Policy PDF §5 |
 | Research | **Articolo peer-reviewed** (Symmetry 2026, S7: bio-inspired edge AI), **due Perspective paper** (Physical AI / Reflex Policy, S2/S3), **prospettive Spatial AI e preprint** (S4/S5/S6 su Preprints.org), terminologia, agenda di ricerca, **glossario** (EROIE, Reflex Layer, Policy Layer, event-action trace, bounded authority, measured closure, compact observability). **Claim discipline** (§7 docx: risultati = simulazioni/stime finché non validati). ⚠️ DA VERIFICARE: riferimento EU grant EIC Pathfinder MultiSpin.AI (grant 101130046) — presente nei PDF, verificare se menzionarlo sul sito | docx §6, §7 + tutti i PDF |
-| Patents & IP | **12 domande di brevetto italiane, 2 EPO, 1 PCT** (tutte "deposited applications", non concesse). Tabella con status, aggiornabile. ⚠️ Rimuovere il vecchio "8 patent families". | docx §2, §8 |
+| Patents & IP `[⏸ RINVIATO]` | **NON in questa fase (§0.10).** Riferimento futuro: 12 domande IT, 2 EPO, 1 PCT (tutte "deposited applications"). Da implementare in una fase successiva. | docx §2, §8 |
 | Company | REFLEXORA = divisione di ricerca IFEVS; posizionamento per investimento; transizione a società indipendente. Paragrafo corporate autorevole = docx §12. Rapporto con IFEVS (ifevs.com) | docx §2, §8, §12 |
 | Contact | Email `contact@reflexora.ai`, invito partnership | index attuale |
 
@@ -190,6 +213,19 @@ dove indicato, adattando solo per web (heading, liste).
 
 Base di partenza già in `css/styles.css` (dark theme premium). Va **consolidata in token** e
 irrobustita. Non introdurre stili ad-hoc inline nelle nuove pagine: usare classi/utility.
+
+### 5.0 Mobile-first (metodo obbligatorio — §0.8)
+- **Base = mobile.** Le regole CSS di default valgono per il viewport più piccolo (target 375px,
+  supportare da 320px). Da lì si sale con `@media (min-width: 48em)` (tablet) e `min-width: 64em`
+  (desktop). **Vietato** partire dal desktop e "riparare" con `max-width`.
+- **Viewport:** ogni pagina ha `<meta name="viewport" content="width=device-width, initial-scale=1">`.
+- **Layout fluidi:** griglie con `grid-template-columns: 1fr` su mobile → `repeat(2/3, 1fr)` in su.
+  Container con `width: 100%` + `padding` laterale `1.25rem` su mobile, `2rem` da tablet.
+- **Tap target ≥ 44×44px**; spaziatura verticale generosa tra link nav; hamburger menu su mobile.
+- **Niente overflow orizzontale:** immagini `max-width:100%`, tabelle in wrapper `overflow-x:auto`,
+  nessuna larghezza fissa in px sui blocchi di contenuto.
+- **Tipografia fluida** con `clamp()` (§5.2): leggibile a 375px senza zoom (body ≥ 16px effettivi).
+- **Test di completamento:** ogni task che tocca UI si verifica **prima a 375px**, poi 768/1280px.
 
 ### 5.1 Colori (token confermati)
 ```
@@ -268,12 +304,12 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 
 | ID | Stato | Agente cons. | Task | Criterio di completamento | Agente | Data |
 |---|---|---|---|---|---|---|
-| T-1.1 | [ ] | Gemini | Estrarre header (navbar) e footer attuali in `partials/header.html` e `partials/footer.html` | I due partial rendono identici all'attuale index | | |
-| T-1.2 | [ ] | Gemini | Aggiornare la navbar: link a tutte le pagine (§3.2), stato "active" per pagina corrente, menu mobile hamburger | Nav funziona su desktop e mobile, evidenzia pagina corrente | | |
-| T-1.3 | [ ] | Gemini | Creare gli scheletri HTML di `architecture/technology/applications/research/patents/company/contact` con header/footer inclusi e `<main>` vuoto | 7 pagine caricano con nav+footer, nessun 404 interno | | |
-| T-1.4 | [ ] | Sonnet | Rifattorizzare `index.html`: sezioni sintetiche che rimandano alle pagine dedicate (CTA "Learn more →") | Home coerente, ogni sezione linka alla pagina di profondità | | |
-| T-1.5 | [ ] | Gemini | Aggiungere skip-link "Skip to content" e landmark ARIA (`<header> <nav> <main> <footer>`) | Skip-link funzionante, landmark presenti su ogni pagina | | |
-| T-1.6 | [ ] | Sonnet | Creare `404.html` in tema, con link di rientro | Pagina 404 stilizzata, testata via URL inesistente | | |
+| T-1.1 | [ ] | Gemini | Estrarre header (navbar) e footer attuali in `partials/header.html` e `partials/footer.html`, con i marcatori `<!-- @include: header/footer -->` usati da `build.mjs` (§3.4) | I due partial rendono identici all'attuale index; `node build.mjs` li inietta senza errori | | |
+| T-1.2 | [ ] | Gemini | Aggiornare la navbar: link alle pagine **attive** (Architecture, Technology, Applications, Research, Company, Contact — **NO Patents, §0.10**), stato "active" per pagina corrente, **menu hamburger mobile-first** (§5.0). Ordine coerente con gerarchia messaggi docx §10 | Nav mobile (hamburger, tap ≥44px) e desktop; evidenzia pagina corrente; nessun link a patents | | |
+| T-1.3 | [ ] | Gemini | Creare gli scheletri HTML di **6 pagine**: `architecture/technology/applications/research/company/contact`, con header/footer inclusi (marcatori build) e `<main>` vuoto. **NON creare `patents.html`** | 6 pagine caricano con nav+footer, nessun 404 interno, nessuna patents.html | | |
+| T-1.4 | [ ] | Sonnet | Rifattorizzare `index.html`: sezioni sintetiche che rimandano alle pagine dedicate (CTA "Learn more →"). **Non riscrivere i testi (§0.9)**, solo strutturare e linkare | Home coerente, ogni sezione linka alla pagina di profondità; corpo testo invariato | | |
+| T-1.5 | [ ] | Gemini | Aggiungere skip-link "Skip to content" e landmark ARIA (`<header> <nav> <main> <footer>`) a tutte le pagine | Skip-link funzionante, landmark presenti su ogni pagina | | |
+| T-1.6 | [ ] | Sonnet | Creare `404.html` in tema, con link di rientro | Pagina 404 stilizzata (mobile-first), testata via URL inesistente | | |
 
 ---
 
@@ -291,20 +327,23 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 
 ## Fase 3 — Contenuti per pagina
 
-> Copy verbatim dal docx §8 dove indicato; adattare in heading/liste per il web. Applicare le
-> **correzioni fattuali** (§4). Lingua del sito: **inglese**.
+> **⚠️ TESTI CONGELATI (§0.9):** in questa fase si **impagina il copy fornito verbatim**, NON si
+> riscrive. I task sotto sono di **impaginazione**, non di redazione. Opus interviene solo con
+> **micro-aggiustamenti SEO/GEO** (title/meta/heading/alt/ordine liste), senza toccare il wording
+> del corpo. Fonte: docx §8 e file in `per testi/`. Lingua del sito: **inglese**. Ogni pagina va
+> impaginata **mobile-first** (§5.0). **Patents & IP è RINVIATA (§0.10).**
 
 | ID | Stato | Agente cons. | Task | Criterio di completamento | Agente | Data |
 |---|---|---|---|---|---|---|
-| T-3.1 | [ ] | Gemini | Impaginare **Home** con il copy docx §8 (hero, what is, why, complementary, enables, closing) | Home completa, testo = docx, link interni attivi | | |
-| T-3.2 | [ ] | Opus | Redigere **Architecture** dai 6 tratti distintivi (docx §4) con struttura scan-friendly + micro-diagrammi CSS | Pagina chiara, terminologia coerente, nessun claim non supportato | | |
-| T-3.3 | [ ] | Opus | Redigere **Technology** (complementarità, binary vs multilevel spintronics, decision–power isolation) | Distinzioni tecniche corrette, tono sobrio | | |
-| T-3.4 | [ ] | Gemini | Impaginare **Applications** (5 domini) come griglia di card | 5 card con testo da fonte | | |
-| T-3.5 | [ ] | Opus | Redigere **Research** con la **claim discipline** (risultati = simulazioni/stime), lista Perspective paper + preprint, glossario (EROIE, Reflex Layer, Policy Layer, event-action trace) | Nessun over-claim; glossario presente (utile anche per GEO) | | |
-| T-3.6 | [ ] | Opus | Costruire **Patents & IP**: intro + **tabella** (tipo, giurisdizione, status "deposited", ambito) per 12 IT + 2 EPO + 1 PCT, con nota "applications, not granted" e blocco "last updated" | Tabella aggiornabile, wording conforme docx §2 | | |
-| T-3.7 | [ ] | Opus | Redigere **Company**: paragrafo corporate autorevole (docx §12), rapporto con IFEVS, traiettoria societaria | Testo = docx §12, link a ifevs.com | | |
-| T-3.8 | [ ] | Sonnet | **Contact**: form (nome, email, messaggio) + email diretta; senza backend → `mailto:` o servizio form statico (es. Formspree) **con consenso** | Form usabile, privacy-safe, nessun dato in querystring | | |
-| T-3.9 | [ ] | Opus | Pass editoriale finale su tutte le pagine: coerenza terminologica, tono, "claim discipline", correzioni fattuali applicate | Checklist coerenza spuntata nel Changelog | | |
+| T-3.1 | [ ] | Gemini | Impaginare **Home** col copy docx §8 verbatim (hero, "What REFLEXORA is", why, complementary, enables, teaser, closing) | Home completa, testo = docx **invariato**, link interni attivi, ok a 375px | | |
+| T-3.2 | [ ] | Gemini | Impaginare **Architecture** coi 6 tratti distintivi (docx §4) come sezioni scan-friendly + micro-diagrammi CSS. Testo verbatim dalle fonti | Pagina chiara, testo = fonte, nessun claim aggiunto, ok mobile | | |
+| T-3.3 | [ ] | Gemini | Impaginare **Technology** (complementarità, binary vs multilevel spintronics, decision–power isolation) dal copy fonte | Contenuto = fonte, tono sobrio, ok mobile | | |
+| T-3.4 | [ ] | Gemini | Impaginare **Applications** — **8 domini** (docx §8: robotica, mobilità, sistemi autonomi, PV, storage, sensing, edge AI, IoT) come griglia di card 1-col mobile → 2/3-col desktop | 8 card con testo da fonte, griglia responsive | | |
+| T-3.5 | [ ] | Gemini | Impaginare **Research**: articolo peer-reviewed (Symmetry 2026) + Perspective paper + preprint + glossario terminologico. Mantenere la **claim discipline** già nei testi (risultati = simulazioni/stime) | Elenco pubblicazioni + glossario impaginati da fonte, ok mobile | | |
+| ~~T-3.6~~ | [⏸ RINVIATO] | — | **Patents & IP — RINVIATA (§0.10).** Non implementare in questa fase | — | — | — |
+| T-3.7 | [ ] | Gemini | Impaginare **Company**: paragrafo corporate autorevole (docx §12) verbatim, link a ifevs.com | Testo = docx §12 invariato, link a IFEVS, ok mobile | | |
+| T-3.8 | [ ] | Sonnet | **Contact**: form (nome, email, messaggio) + email diretta; senza backend → `mailto:` o servizio form statico (es. Formspree) **con consenso**; form mobile-first | Form usabile a 375px, privacy-safe, nessun dato in querystring | | |
+| T-3.9 | [ ] | Opus | **Pass SEO/GEO editoriale** (NON riscrittura corpo, §0.9): title/meta/heading/alt per pagina, coerenza terminologica, verifica correzioni fattuali ("division of IFEVS", no "8 brevetti") già rispettate nei testi | Checklist coerenza + micro-fix SEO nel Changelog; corpo testo invariato | | |
 
 ---
 
@@ -344,7 +383,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | ID | Stato | Agente cons. | Task | Criterio di completamento | Agente | Data |
 |---|---|---|---|---|---|---|
 | T-6.1 | [ ] | Opus | Creare **`llms.txt`** (root): descrizione sintetica di REFLEXORA, glossario entità, elenco pagine con 1-riga, fatti chiave (IP 12+2+1, divisione IFEVS), contatto | `llms.txt` raggiungibile, accurato, allineato alle correzioni §4 | | |
-| T-6.2 | [ ] | Opus | Sezione **FAQ** (Home o Research) con `FAQPage` JSON-LD: "What is Reflex–Policy?", "Is REFLEXORA a company?", "What is EROIE?", "How many patents?" | FAQ visibile + schema valido, risposte fattuali | | |
+| T-6.2 | [ ] | Opus | Sezione **FAQ** (Home o Research) con `FAQPage` JSON-LD: "What is Reflex–Policy?", "Is REFLEXORA a company?", "What is EROIE?" (⚠️ **niente domanda sui brevetti** in questa fase, §0.10) | FAQ visibile + schema valido, risposte fattuali | | |
 | T-6.3 | [ ] | Opus | **Definizioni di entità** citabili: glossario per Reflex Layer, Policy Layer, EROIE, event-action trace, world model — frasi autoconclusive (estraibili dagli LLM) | Ogni termine ha definizione di 1–2 frasi indipendente dal contesto | | |
 | T-6.4 | [ ] | Opus | Struttura "answer-first": ogni pagina apre con abstract di 2–3 frasi che risponde alla domanda implicita | Abstract in cima a ogni pagina di contenuto | | |
 | T-6.5 | [ ] | Opus | Coerenza di **naming e claim** tra sito, `llms.txt`, JSON-LD e docx (una sola versione dei fatti) | Nessuna discrepanza tra le fonti pubbliche | | |
@@ -396,6 +435,9 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 
 ## Fase 10 — Launch checklist (gate finale)
 
+- [ ] **Mobile-first verificato** su tutte le pagine a 375px (no overflow, tap ≥44px) — §5.0
+- [ ] Testi impaginati **verbatim** (nessuna riscrittura non autorizzata) — §0.9
+- [ ] Patents & IP **non** presente in questa fase (né pagina, né link, né sitemap) — §0.10
 - [ ] Tutte le correzioni fattuali applicate (no "già società", no "8 brevetti") — §4
 - [ ] Font self-hosted, nessuna chiamata esterna non necessaria
 - [ ] `title`/`description`/OG/canonical unici per pagina
@@ -484,7 +526,7 @@ server Aruba gira solo HTML statico.
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 0 | ⬜ Non iniziata |
 | 2 Design system | 5 | 0 | ⬜ Non iniziata |
-| 3 Contenuti | 9 | 0 | ⬜ Non iniziata |
+| 3 Contenuti | 8 | 0 | ⬜ Non iniziata (T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
 | 6 GEO | 6 | 0 | ⬜ Non iniziata |
@@ -517,5 +559,7 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Sonnet · T-0.3 · Creato `build.mjs` (inliner partial idempotente, zero deps npm); aggiunta nota Build in §9; testato con partial fittizi.
 
 - 2026-07-11 · Opus 4.6 · T-0.4 · Review mappa pagine/contenuti vs fonti. Corretti: Research (aggiunto articolo peer-reviewed Symmetry + portfolio completo), Technology (aggiunta fonte Reflex Policy PDF), Applications (8 domini non 5), Home (aggiunto "What REFLEXORA is"), aggiunta disciplina novità. Flag: EU grant da verificare. Report completo in artifact t04_review.md.
+
+- 2026-07-11 · Opus (root) · — · Verificato lavoro Fase 0 (Gemini T-0.1/0.2, Sonnet T-0.3, Opus T-0.4): OK. Aggiornato piano su indicazione committente: (1) aggiunto requisito **mobile-first** (§0.8, §1, §5.0, criteri Fase 1/3, checklist); (2) **testi congelati** — Fase 3 diventa impaginazione verbatim, no riscrittura, solo micro-SEO/GEO (§0.9); (3) **Patents & IP rinviata** — rimossa da nav/scaffold/Fase 3/FAQ (§0.10); Fase 3 ora 8 task.
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
