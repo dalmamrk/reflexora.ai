@@ -319,8 +319,8 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 |---|---|---|---|---|---|---|
 | T-2.1 | [x] | Gemini | Definire i token in `:root` (spaziatura §5.3, radius, ombre, z-index) e tokenizzare lo z-index della navbar. **Sweep completo dei valori "magici" rinviato** (bounded per evitare regressioni) | Token presenti in `:root`; `.navbar` usa `var(--z-nav)`; nessuna regressione visiva | Gemini | 2026-07-11 |
 | T-2.2 | [x] | Gemini | Introdurre scala tipografica fluida con `clamp()` (token `--fs-*`) e applicarla a `.section-title` e `body`; `.hero-title` resta governata da T-2.6 | Tipografia scala senza scatti tra 320px e 1920px; body ≥16px a 375px | Gemini | 2026-07-11 |
-| T-2.3 | [ ] | Gemini | Sostituire gli stili inline presenti in `index.html` con classi/utility | Zero `style="..."` non giustificati nelle pagine | | |
-| T-2.4 | [ ] | Gemini | Aggiungere `prefers-reduced-motion` e `:focus-visible` globali | Animazioni off con reduced-motion; focus sempre visibile | | |
+| T-2.3 | [x] | Gemini | Sostituire gli stili inline presenti in `index.html` con classi/utility | Zero `style="..."` non giustificati nelle pagine | Gemini | 2026-07-11 |
+| T-2.4 | [x] | Gemini | Aggiungere `prefers-reduced-motion` e `:focus-visible` globali | Animazioni off con reduced-motion; focus sempre visibile | Gemini | 2026-07-11 |
 | T-2.6 | [x] | Gemini | **Convertire il CSS legacy da desktop-first a mobile-first (§5.0).** In `css/styles.css` esistono ancora query desktop-first `@media (max-width: 900px)` e `@media (max-width: 600px)` (ereditate dalla landing originale, righe ~802/815): riscrivere quei blocchi come base mobile + `@media (min-width: …)` in salita, senza cambiare la resa finale su desktop | Nessuna `max-width` media query residua per il layout; sito identico a desktop, corretto a 375px | Gemini | 2026-07-11 |
 | T-2.5 | [ ] | Opus | Review design system: coerenza, gerarchia visiva, densità, "claim discipline" visiva (niente over-promise grafico), **coerenza mobile-first** | Nota di review + eventuali fix nel Changelog | | |
 
@@ -526,7 +526,7 @@ server Aruba gira solo HTML statico.
 |---|---|---|---|
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 6 | ✅ Completata |
-| 2 Design system | 6 | 3 | 🔄 In corso |
+| 2 Design system | 6 | 5 | 🔄 In corso |
 | 3 Contenuti | 8 | 0 | ⬜ Non iniziata (T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
@@ -575,3 +575,5 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Gemini · T-2.1 · Aggiunti design tokens a :root e z-index aggiornato per navbar.
 - 2026-07-11 · Gemini · T-2.2 · Applicata tipografia fluida con clamp() a body e section-title.
 - 2026-07-11 · Gemini · T-2.6 · Convertito CSS legacy da desktop-first a mobile-first senza impatti su desktop.
+- 2026-07-11 · Gemini · T-2.4 · Aggiunti stili per reduced-motion e focus-visible.
+- 2026-07-11 · Gemini · T-2.3 · Rimpiazzati gli stili inline in index.html con classi utility in styles.css.
