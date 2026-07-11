@@ -474,7 +474,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | D-2 | Analytics | Plausible (no-cookie) | committente |
 | D-3 | Gestione form contatti senza backend | `mailto:` + (opz.) Formspree con consenso | committente |
 | D-4 | Includere pagina/bio team (es. Pietro Perlo, IFEVS) | Sì, in Company — ⚠️ verificare dati prima di pubblicare | committente |
-| D-5 | `per testi/` resta nel repo git come fonte ma esclusa dal deploy | Sì | committente |
+| D-5 | `per testi/` in git? | ✅ **RISOLTA (2026-07-11): NO** → aggiunta a `.gitignore`, non versionata, resta solo in locale come fonte | committente |
 
 > Finché una decisione è aperta, i task collegati restano `[!]` e non si va in produzione su quel punto.
 
