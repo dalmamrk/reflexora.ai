@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture | Reflexora.ai</title>
+    <title>Architecture — REFLEXORA</title>
     <meta name="description" content="We develop the architecture and intellectual property that assign each physical event to the lowest sufficient layer capable of acting safely, correctly, and energy-efficiently.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,9 +38,50 @@
 <!-- @endinclude: header -->
 
     <main id="main" style="min-height: 70vh; padding: 8rem 0;">
-        <div class="container">
-            <h1 class="section-title center">Architecture</h1>
-        </div>
+        <section>
+            <div class="container reveal">
+                <h1 class="section-title center">The Reflex–Policy Architecture</h1>
+                <p class="section-intro">Advanced world models and policy models are essential for prediction, learning, planning, and complex choice. But not every physical event should wait for the richest available computation. Some events require a bounded local action before delay becomes unsafe, inefficient, or energetically wasteful.</p>
+                <p class="section-intro mb-6">Reflex–Policy separates the urgent local path from slower supervisory intelligence. The Policy Layer defines permissions, context, and rules. The Reflex Layer executes only the first permitted action, verifies the physical response, and reports a compact event-action trace.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container reveal-delay">
+                <h2 class="section-title center">What makes the architecture distinctive</h2>
+                
+                <div class="grid-3-col mb-6">
+                    <div class="glass-card">
+                        <h3>Event-to-action partitioning</h3>
+                        <p>Not every sensor event should travel through the richest available model. The architecture identifies which events require immediate local action, which require policy interpretation, and which require world-model reasoning.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Bounded authority</h3>
+                        <p>A reflex does not receive unlimited control. It acts inside a permission envelope defined by safety, operating state, configuration, and supervisory policy.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Measured closure</h3>
+                        <p>The architecture includes the actuator command and the physical feedback that confirms whether the commanded response actually occurred.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Compact observability</h3>
+                        <p>Local actions produce event-action traces: what happened, what was permitted, what was commanded, what was measured, and whether containment or fallback was required.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Energy proportionality</h3>
+                        <p>The EROIE framing asks whether the energy protected, recovered, or made useful by an action justifies the sensing, inference, electronics, and actuation energy spent to obtain it.</p>
+                    </div>
+                    <div class="glass-card">
+                        <h3>World model as teacher</h3>
+                        <p>High-cost models may learn or optimize rules offline or periodically, then transfer bounded rule maps to local execution layers that do not require full-model latency at runtime.</p>
+                    </div>
+                </div>
+
+                <div class="cta-container-xl">
+                    <a href="/technology" class="btn-secondary btn-icon">Explore the technology <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- @include: footer -->
