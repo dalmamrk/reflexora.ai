@@ -344,7 +344,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | ~~T-3.6~~ | [⏸ RINVIATO] | — | **Patents & IP — RINVIATA (§0.10).** Non implementare in questa fase | — | — | — |
 | T-3.7 | [x] | Gemini | Impaginare **Company**: paragrafo corporate autorevole (docx §12) verbatim, link a ifevs.com | Testo = docx §12 invariato, link a IFEVS, ok mobile | Gemini | 2026-07-11 |
 | T-3.8 | [x] | Sonnet→Claude Code | **Contact**: **decisione committente 2026-07-11 (D-3): pagina contatto SENZA form** — invito "Get in Touch" + CTA `mailto:contact@reflexora.ai` + affiliazione IFEVS. Zero backend, zero dati personali trattati (GDPR-clean). Formspree eventuale in futuro. | Pagina usabile a 375px, mailto funzionante, nessun dato in querystring | Claude Code (root) | 2026-07-11 |
-| T-3.9 | [ ] | Opus | **Pass SEO/GEO editoriale** (NON riscrittura corpo, §0.9): title/meta/heading/alt per pagina, coerenza terminologica, verifica correzioni fattuali ("division of IFEVS", no "8 brevetti") già rispettate nei testi | Checklist coerenza + micro-fix SEO nel Changelog; corpo testo invariato | | |
+| T-3.9 | [x] | Opus→Claude Code | **Pass SEO/GEO editoriale** (NON riscrittura corpo, §0.9): coerenza terminologica + correzioni fattuali verificate (vedi Changelog). **Titoli/meta description per-pagina consolidati in Fase 5 (T-5.1)** per non duplicare il lavoro | Checklist coerenza OK; corpo testo invariato | Claude Code (root) | 2026-07-11 |
 
 ---
 
@@ -527,7 +527,7 @@ server Aruba gira solo HTML statico.
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 6 | ✅ Completata |
 | 2 Design system | 6 | 6 | ✅ Completata |
-| 3 Contenuti | 8 | 7 | 🔄 In corso (resta solo T-3.9 SEO/GEO; T-3.6 Patents rinviata) |
+| 3 Contenuti | 8 | 8 | ✅ Completata (T-3.6 Patents rinviata; meta description → Fase 5) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
 | 6 GEO | 6 | 0 | ⬜ Non iniziata |
@@ -570,6 +570,8 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Claude Code (root) · T-3.1 · Home: aggiunta sezione "What is REFLEXORA?" (blocco identitario §8, 2 paragrafi verbatim + CTA a /company) dopo l'hero. La home era già teaser completo (hero, why, complementary, applications, IP, corporate evolution); questo colma il blocco identitario mancante segnalato in T-0.4. Verificato: 0 overflow a 375px, sezioni in ordine corretto.
 
 - 2026-07-11 · Claude Code (root) · T-3.8 · Contact page (decisione D-3: senza form): "Get in Touch" + invito + CTA mailto:contact@reflexora.ai + affiliazione IFEVS, tutto centrato (.section-centered). Aggiunta classe `.contact-page` (padding-top 8rem) per far superare all'H1 la navbar fissa. Rimosso lo stile inline scaffold dal <main>. Verificato a 375px: no overflow, mailto ok. Fase 3 → 7/8 (resta solo T-3.9 SEO/GEO).
+
+- 2026-07-11 · Claude Code (root) · T-3.9 · Review coerenza SEO/GEO cross-pagina: 0 frasi vietate ("already a company"/"8 patents"); correzioni fattuali presenti ("research division of IFEVS", "12 deposited Italian patent"); terminologia (Reflex/Policy Layer, EROIE, event-action trace, Reflex–Policy) coerente; 8 title unici. NOTA: formati title da uniformare + meta description per-pagina → delegati a Fase 5 (T-5.1). **Fase 3 COMPLETATA (8/8, T-3.6 Patents rinviata).**
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
 - 2026-07-11 · Gemini · T-1.1 · Estratti header e footer in partials/ e inlinati in index.html tramite build.mjs.
