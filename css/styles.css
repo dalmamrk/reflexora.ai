@@ -354,12 +354,17 @@ h1, h2, h3, h4 {
     box-shadow: inset 0 0 10px rgba(79, 172, 254, 0.2);
 }
 
+/* Mobile-first: full-width CTA on small screens (T-2.6) */
+.btn-primary, .btn-secondary { width: 100%; text-align: center; }
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 6rem 2rem 2rem 2rem;
+    text-align: center;
+    padding: 8rem 2rem 2rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
@@ -385,19 +390,20 @@ h1, h2, h3, h4 {
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
     color: var(--text-secondary);
-    margin-bottom: 2.5rem;
+    margin: 0 auto 2rem auto;
     max-width: 600px;
 }
 
 .hero-actions {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
 }
 
@@ -407,7 +413,8 @@ h1, h2, h3, h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    height: 300px;
+    margin-top: 3rem;
     position: relative;
 }
 
@@ -545,13 +552,13 @@ section {
 
 .grid-2-col {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 3rem;
 }
 
 .grid-3-col {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 2rem;
 }
 
@@ -585,6 +592,7 @@ section {
 /* Technology Section Specifics */
 .tech-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 4rem;
 }
@@ -767,6 +775,8 @@ section {
 
 .footer-content {
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: space-between;
     margin-bottom: 3rem;
 }
@@ -817,22 +827,21 @@ section {
     transform: translateY(0);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .hero { flex-direction: column; text-align: center; padding-top: 8rem; }
+/* Responsive — mobile-first (min-width). Base = mobile; qui si sale. (T-2.6) */
+@media (min-width: 601px) {
     .hero-title { font-size: 3rem; }
-    .hero-subtitle { margin: 0 auto 2rem auto; }
-    .hero-actions { justify-content: center; }
-    .hero-visual { margin-top: 3rem; height: 300px; }
-    
-    .grid-2-col, .tech-container { flex-direction: column; display: flex; }
-    .grid-3-col { grid-template-columns: 1fr; }
-    
-    .footer-content { flex-direction: column; gap: 2rem; }
+    .hero-actions { flex-direction: row; justify-content: center; }
+    .btn-primary, .btn-secondary { width: auto; text-align: initial; }
 }
 
-@media (max-width: 600px) {
-    .hero-title { font-size: 2.2rem; }
-    .hero-actions { flex-direction: column; }
-    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+@media (min-width: 901px) {
+    .hero { flex-direction: row; text-align: left; padding-top: 6rem; }
+    .hero-title { font-size: 4rem; }
+    .hero-subtitle { margin: 0 0 2.5rem 0; }
+    .hero-actions { justify-content: flex-start; }
+    .hero-visual { height: 500px; margin-top: 0; }
+    .grid-2-col { grid-template-columns: 1fr 1fr; }
+    .grid-3-col { grid-template-columns: repeat(3, 1fr); }
+    .tech-container { flex-direction: row; }
+    .footer-content { flex-direction: row; }
 }
