@@ -343,7 +343,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 | T-3.5 | [x] | Gemini | Impaginare **Research**: articolo peer-reviewed (Symmetry 2026) + Perspective paper + preprint + glossario terminologico. Mantenere la **claim discipline** già nei testi (risultati = simulazioni/stime) | Elenco pubblicazioni + glossario impaginati da fonte, ok mobile | Gemini | 2026-07-11 |
 | ~~T-3.6~~ | [⏸ RINVIATO] | — | **Patents & IP — RINVIATA (§0.10).** Non implementare in questa fase | — | — | — |
 | T-3.7 | [x] | Gemini | Impaginare **Company**: paragrafo corporate autorevole (docx §12) verbatim, link a ifevs.com | Testo = docx §12 invariato, link a IFEVS, ok mobile | Gemini | 2026-07-11 |
-| T-3.8 | [ ] | Sonnet | **Contact**: form (nome, email, messaggio) + email diretta; senza backend → `mailto:` o servizio form statico (es. Formspree) **con consenso**; form mobile-first | Form usabile a 375px, privacy-safe, nessun dato in querystring | | |
+| T-3.8 | [x] | Sonnet→Claude Code | **Contact**: **decisione committente 2026-07-11 (D-3): pagina contatto SENZA form** — invito "Get in Touch" + CTA `mailto:contact@reflexora.ai` + affiliazione IFEVS. Zero backend, zero dati personali trattati (GDPR-clean). Formspree eventuale in futuro. | Pagina usabile a 375px, mailto funzionante, nessun dato in querystring | Claude Code (root) | 2026-07-11 |
 | T-3.9 | [ ] | Opus | **Pass SEO/GEO editoriale** (NON riscrittura corpo, §0.9): title/meta/heading/alt per pagina, coerenza terminologica, verifica correzioni fattuali ("division of IFEVS", no "8 brevetti") già rispettate nei testi | Checklist coerenza + micro-fix SEO nel Changelog; corpo testo invariato | | |
 
 ---
@@ -472,7 +472,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 |---|---|---|---|
 | D-1 | `www` vs non-`www` come canonico | non-www | committente |
 | D-2 | Analytics | Plausible (no-cookie) | committente |
-| D-3 | Gestione form contatti senza backend | `mailto:` + (opz.) Formspree con consenso | committente |
+| D-3 | Gestione contatti senza backend | ✅ **RISOLTA (2026-07-11): pagina SENZA form** — solo CTA `mailto:contact@reflexora.ai` + invito. Formspree eventuale in futuro. | committente |
 | D-4 | Includere pagina/bio team (es. Pietro Perlo, IFEVS) | Sì, in Company — ⚠️ verificare dati prima di pubblicare | committente |
 | D-5 | `per testi/` in git? | ✅ **RISOLTA (2026-07-11): NO** → aggiunta a `.gitignore`, non versionata, resta solo in locale come fonte | committente |
 
@@ -527,7 +527,7 @@ server Aruba gira solo HTML statico.
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 6 | ✅ Completata |
 | 2 Design system | 6 | 6 | ✅ Completata |
-| 3 Contenuti | 8 | 6 | 🔄 In corso (T-3.6 Patents rinviata) |
+| 3 Contenuti | 8 | 7 | 🔄 In corso (resta solo T-3.9 SEO/GEO; T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
 | 6 GEO | 6 | 0 | ⬜ Non iniziata |
@@ -568,6 +568,8 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Claude Code (root, al posto di Opus per quota esaurita) · T-2.5 · **Review design system Fase 2 + 2 fix.** ESITO: (a) token/tipografia fluida/mobile-first applicati e fedeli su desktop; (b) contrasto testo secondario #94a3b8 su #070a13 ≈ 7.7:1 → supera WCAG AAA; (c) tap target 44px e bottoni full-width mobile OK; (d) contenuti resi correttamente in tutte le sezioni (verifica DOM: about, technology, 3 app-card, footer); (e) "claim discipline" visiva OK — i visual (neural sphere, crossbar) sono astratti, non implicano dati misurati. FIX APPLICATI: (1) `refactor(css): move partial inline styles to classes` — spostati i 3 inline residui dei partial (logo, footer affiliation IFEVS) in classi `.logo-link`/`.footer-affiliation`, rigenerato con build.mjs; (2) `fix(a11y/seo): gate scroll-reveal hidden state behind .js class` — prima `.reveal{opacity:0}` nascondeva il contenuto SENZA JS (rischio per crawler/GEO e no-JS); ora lo stato nascosto è sotto `.js` (aggiunta `document.documentElement.classList.add('js')` in main.js) → contenuto visibile di default, animato solo con JS. Verificato: hero visibile con JS attivo; fallback no-JS visibile. NB: lo scroll-reveal below-fold non è verificabile nel browser di preview (IntersectionObserver non emette callback in quell'ambiente) ma è corretto per costruzione e funziona nei browser reali. NOTA MINORE: le 6 pagine depth hanno ancora 1 stile inline scaffold (`<main style=...>`) ciascuna → verranno sostituite in Fase 3.
 
 - 2026-07-11 · Claude Code (root) · T-3.1 · Home: aggiunta sezione "What is REFLEXORA?" (blocco identitario §8, 2 paragrafi verbatim + CTA a /company) dopo l'hero. La home era già teaser completo (hero, why, complementary, applications, IP, corporate evolution); questo colma il blocco identitario mancante segnalato in T-0.4. Verificato: 0 overflow a 375px, sezioni in ordine corretto.
+
+- 2026-07-11 · Claude Code (root) · T-3.8 · Contact page (decisione D-3: senza form): "Get in Touch" + invito + CTA mailto:contact@reflexora.ai + affiliazione IFEVS, tutto centrato (.section-centered). Aggiunta classe `.contact-page` (padding-top 8rem) per far superare all'H1 la navbar fissa. Rimosso lo stile inline scaffold dal <main>. Verificato a 375px: no overflow, mailto ok. Fase 3 → 7/8 (resta solo T-3.9 SEO/GEO).
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
 - 2026-07-11 · Gemini · T-1.1 · Estratti header e footer in partials/ e inlinati in index.html tramite build.mjs.

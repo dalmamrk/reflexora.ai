@@ -904,6 +904,12 @@ section {
     text-align: center;
 }
 
+/* Contact page: extra top padding so the first heading clears the fixed navbar */
+.contact-page {
+    padding-top: 8rem;
+    min-height: 60vh;
+}
+
 .position-intro {
     max-width: 750px;
     margin: 0 auto var(--space-5);
