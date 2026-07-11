@@ -336,7 +336,7 @@ dipendenza esterna che rallenta il primo render e (b) un tema **GDPR** (trasferi
 
 | ID | Stato | Agente cons. | Task | Criterio di completamento | Agente | Data |
 |---|---|---|---|---|---|---|
-| T-3.1 | [ ] | Gemini | Impaginare **Home** col copy docx §8 verbatim (hero, "What REFLEXORA is", why, complementary, enables, teaser, closing) | Home completa, testo = docx **invariato**, link interni attivi, ok a 375px | | |
+| T-3.1 | [x] | Gemini→Claude Code | Impaginare **Home** col copy docx §8 verbatim (hero, "What REFLEXORA is", why, complementary, enables, teaser, closing) | Home completa, testo = docx **invariato**, link interni attivi, ok a 375px | Claude Code (root) | 2026-07-11 |
 | T-3.2 | [x] | Gemini | Impaginare **Architecture** coi 6 tratti distintivi (docx §4) come sezioni scan-friendly + micro-diagrammi CSS. Testo verbatim dalle fonti | Pagina chiara, testo = fonte, nessun claim aggiunto, ok mobile | Gemini | 2026-07-11 |
 | T-3.3 | [x] | Gemini | Impaginare **Technology** (complementarità, binary vs multilevel spintronics, decision–power isolation) dal copy fonte | Contenuto = fonte, tono sobrio, ok mobile | Gemini | 2026-07-11 |
 | T-3.4 | [x] | Gemini | Impaginare **Applications** — **8 domini** (docx §8: robotica, mobilità, sistemi autonomi, PV, storage, sensing, edge AI, IoT) come griglia di card 1-col mobile → 2/3-col desktop | 8 card con testo da fonte, griglia responsive | Gemini | 2026-07-11 |
@@ -527,7 +527,7 @@ server Aruba gira solo HTML statico.
 | 0 Setup | 4 | 4 | ✅ Completata |
 | 1 Architettura | 6 | 6 | ✅ Completata |
 | 2 Design system | 6 | 6 | ✅ Completata |
-| 3 Contenuti | 8 | 5 | 🔄 In corso (T-3.6 Patents rinviata) |
+| 3 Contenuti | 8 | 6 | 🔄 In corso (T-3.6 Patents rinviata) |
 | 4 Performance | 5 | 0 | ⬜ Non iniziata |
 | 5 SEO | 9 | 0 | ⬜ Non iniziata |
 | 6 GEO | 6 | 0 | ⬜ Non iniziata |
@@ -566,6 +566,8 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Opus (root) · — · Verificata Fase 1 (Gemini T-1.1/1.2/1.3/1.5, Sonnet T-1.4/1.6): OK, §0.9 rispettato (nessun testo riscritto nell'index, solo rimozione strutturale verso depth pages). Riassegnati T-2.1/T-2.2/T-2.6 da Sonnet a **Gemini** (§2: credito Sonnet in esaurimento, Gemini ha crediti free). T-2.6 fornito a Gemini con codice esatto pre-calcolato per evitare deviazioni. T-2.1 ridotto (sweep valori magici rinviato).
 
 - 2026-07-11 · Claude Code (root, al posto di Opus per quota esaurita) · T-2.5 · **Review design system Fase 2 + 2 fix.** ESITO: (a) token/tipografia fluida/mobile-first applicati e fedeli su desktop; (b) contrasto testo secondario #94a3b8 su #070a13 ≈ 7.7:1 → supera WCAG AAA; (c) tap target 44px e bottoni full-width mobile OK; (d) contenuti resi correttamente in tutte le sezioni (verifica DOM: about, technology, 3 app-card, footer); (e) "claim discipline" visiva OK — i visual (neural sphere, crossbar) sono astratti, non implicano dati misurati. FIX APPLICATI: (1) `refactor(css): move partial inline styles to classes` — spostati i 3 inline residui dei partial (logo, footer affiliation IFEVS) in classi `.logo-link`/`.footer-affiliation`, rigenerato con build.mjs; (2) `fix(a11y/seo): gate scroll-reveal hidden state behind .js class` — prima `.reveal{opacity:0}` nascondeva il contenuto SENZA JS (rischio per crawler/GEO e no-JS); ora lo stato nascosto è sotto `.js` (aggiunta `document.documentElement.classList.add('js')` in main.js) → contenuto visibile di default, animato solo con JS. Verificato: hero visibile con JS attivo; fallback no-JS visibile. NB: lo scroll-reveal below-fold non è verificabile nel browser di preview (IntersectionObserver non emette callback in quell'ambiente) ma è corretto per costruzione e funziona nei browser reali. NOTA MINORE: le 6 pagine depth hanno ancora 1 stile inline scaffold (`<main style=...>`) ciascuna → verranno sostituite in Fase 3.
+
+- 2026-07-11 · Claude Code (root) · T-3.1 · Home: aggiunta sezione "What is REFLEXORA?" (blocco identitario §8, 2 paragrafi verbatim + CTA a /company) dopo l'hero. La home era già teaser completo (hero, why, complementary, applications, IP, corporate evolution); questo colma il blocco identitario mancante segnalato in T-0.4. Verificato: 0 overflow a 375px, sezioni in ordine corretto.
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
 - 2026-07-11 · Gemini · T-1.1 · Estratti header e footer in partials/ e inlinati in index.html tramite build.mjs.
