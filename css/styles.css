@@ -827,6 +827,77 @@ section {
     transform: translateY(0);
 }
 
+/* Utility & Semantic Layout Classes (T-2.3) */
+.hero-subtitle-sm {
+    margin-top: var(--space-3);
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
+.section-intro {
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.cta-container { text-align: center; margin-top: var(--space-4); }
+.cta-container-lg { text-align: center; margin-top: 2.5rem; }
+.cta-container-xl { text-align: center; margin-top: var(--space-6); }
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+}
+
+.mb-6 { margin-bottom: var(--space-6); }
+
+.app-card.delay-100 { transition-delay: 100ms; }
+.app-card.delay-200 { transition-delay: 200ms; }
+
+.section-highlight {
+    padding: 5rem 0;
+    background: rgba(15, 23, 42, 0.3);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.card-centered {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ip-note {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+}
+
+.section-centered {
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.position-intro {
+    max-width: 750px;
+    margin: 0 auto var(--space-5);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.position-statement {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+}
+
 /* Responsive — mobile-first (min-width). Base = mobile; qui si sale. (T-2.6) */
 @media (min-width: 601px) {
     .hero-title { font-size: 3rem; }
