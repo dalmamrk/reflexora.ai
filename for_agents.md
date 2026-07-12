@@ -117,8 +117,11 @@ profondità SEO/GEO. Niente over-engineering.
 /cookie-policy        cookie-policy.html Cookie policy (GDPR)
 /404                  404.html           Pagina di errore
 ```
-> URL "puliti" senza `.html`: gestiti via `.htaccess` su Aruba/Apache (§9). Standardizzare i link
-> interni su **percorsi assoluti senza estensione** e lasciare che `.htaccess` mappi.
+> **⚠️ URL — REVISIONE 2026-07-12:** i link interni usano **percorsi RELATIVI con estensione**
+> (`architecture.html`), NON URL "puliti" assoluti. Motivo: il sito va prima su **GitHub Pages**
+> (per revisione umana dei testi) e aperto anche in locale `file://` — nessuno dei due supporta
+> `.htaccess`. I link relativi funzionano ovunque: locale, GitHub Pages e Aruba. Gli URL puliti
+> (rewrite `.htaccess`) restano un'opzione **solo su Aruba** in Fase 8, facoltativa.
 
 ### 3.3 Struttura delle directory (target)
 ```
@@ -572,6 +575,8 @@ Formato: `AAAA-MM-GG · <agente> · <task ID> · <sintesi>`
 - 2026-07-11 · Claude Code (root) · T-3.8 · Contact page (decisione D-3: senza form): "Get in Touch" + invito + CTA mailto:contact@reflexora.ai + affiliazione IFEVS, tutto centrato (.section-centered). Aggiunta classe `.contact-page` (padding-top 8rem) per far superare all'H1 la navbar fissa. Rimosso lo stile inline scaffold dal <main>. Verificato a 375px: no overflow, mailto ok. Fase 3 → 7/8 (resta solo T-3.9 SEO/GEO).
 
 - 2026-07-11 · Claude Code (root) · T-3.9 · Review coerenza SEO/GEO cross-pagina: 0 frasi vietate ("already a company"/"8 patents"); correzioni fattuali presenti ("research division of IFEVS", "12 deposited Italian patent"); terminologia (Reflex/Policy Layer, EROIE, event-action trace, Reflex–Policy) coerente; 8 title unici. NOTA: formati title da uniformare + meta description per-pagina → delegati a Fase 5 (T-5.1). **Fase 3 COMPLETATA (8/8, T-3.6 Patents rinviata).**
+
+- 2026-07-12 · Claude Code (root) · fix+design · (1) **Link portabili:** convertiti tutti i link interni da URL assoluti "puliti" (`/page`) a relativi con estensione (`page.html`) → funzionano su file://, GitHub Pages e Aruba (vedi §3.2 revisione). (2) **Header:** rimosso "Get in Touch" ridondante; "Contact" ora è l'unica CTA di nav (chip). (3) **Design pass** (richiesta committente: design troppo basico): bottoni rifatti (geometria 8px, ink scuro su fill brillante, ghost hairline, freccia animata, focus ring), badge tecnico monospace, card con hairline + accento, titoli con accento gradient, indicatore nav active, sfondo con griglia sottile. Verificato desktop+mobile, 0 overflow.
 
 <!-- Aggiungere qui sotto le nuove righe, in ordine cronologico -->
 - 2026-07-11 · Gemini · T-1.1 · Estratti header e footer in partials/ e inlinati in index.html tramite build.mjs.
