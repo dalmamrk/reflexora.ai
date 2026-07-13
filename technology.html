@@ -39,21 +39,59 @@
     <main id="main" style="min-height: 70vh; padding: 8rem 0;">
         <section>
             <div class="container reveal">
-                <h1 class="section-title center">A Complementary Architecture</h1>
+                <h1 class="section-title center">A Technology-Neutral Architecture</h1>
                 <p class="section-intro">REFLEXORA complements neuromorphic, spintronic, in-memory, analog, digital, and conventional electronic technologies. These technologies can become implementation components at different layers. REFLEXORA determines where and how they should be used across the sensing–decision–energy–actuation chain.</p>
-                <p class="section-intro mb-6">REFLEXORA is not another accelerator. It is the architecture that decides which events need acceleration, which events need only a low-bit local rule, and how the resulting physical action remains safe, observable, and energy-proportional.</p>
+                <p class="section-intro mb-6">REFLEXORA is not another accelerator. It is the architecture that decides which events need acceleration, which events need only a low-bit local rule, and how the resulting physical action remains safe, observable, and energy-proportional. The architecture is technology-neutral at the decision layer.</p>
             </div>
         </section>
 
         <section>
             <div class="container reveal-delay">
-                <h2 class="section-title">Binary and multilevel spintronics</h2>
-                <p class="mb-6">REFLEXORA studies how these device classes can cooperate within the same architecture, rather than treating all forms of spintronic computation as interchangeable.</p>
-                
+                <h2 class="section-title">Conventional Electronic Implementation</h2>
+                <p class="mb-6">The complete reflex function can be implemented today with established components. The conventional implementation path demonstrates that the Reflex–Policy architecture does not require exotic device technologies to deliver its core value.</p>
+
+                <div class="glass-card mb-6">
+                    <p>The local decision logic can be realized in several mature ways:</p>
+                    <ul class="features-list">
+                        <li>A microcontroller reads sensor flags, evaluates a small deterministic rule table and commands the output selector.</li>
+                        <li>A CPLD or FPGA implements the same rules in parallel with explicit one-hot logic and hardware timing.</li>
+                        <li>For production, comparator banks, rule logic, timers, priority encoders, interlocks and communication interfaces can be integrated into a mixed-signal ASIC or next-generation controller.</li>
+                        <li>Non-volatile configuration may be stored in automotive flash, EEPROM, embedded MRAM or another qualified memory.</li>
+                    </ul>
+                    <p class="mt-3">This conventional path provides the direct engineering baseline across all application domains — battery systems, energy harvesting, robotics, edge AI and IoT.</p>
+                </div>
+
+                <h2 class="section-title">Technology-Neutral Rule-Map Alternatives</h2>
+                <p class="mb-6">The decision and rule-map block can be implemented with multiple technologies, selected according to the requirements of each application:</p>
+
+                <div class="grid-2-col mb-6">
+                    <div class="glass-card">
+                        <h3>Conventional approaches</h3>
+                        <ul class="features-list">
+                            <li>MCU with a verified rule table and hardware output interlocks</li>
+                            <li>CPLD or FPGA with parallel logic, deterministic timing and one-hot arbitration</li>
+                            <li>Mixed-signal ASIC or configurable CMOS logic with embedded flash, EEPROM or another qualified non-volatile memory</li>
+                            <li>Hardwired comparator and state-machine logic for a fixed-function, minimum-complexity implementation</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Optional emerging technologies</h3>
+                        <ul class="features-list">
+                            <li>Embedded MRAM or binary MTJ crossbar</li>
+                            <li>RRAM, FeFET, phase-change memory</li>
+                            <li>Other non-volatile low-resolution arrays</li>
+                        </ul>
+                        <p class="mt-3">These can be adopted when their system-level advantages and qualification justify it.</p>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Spintronic Devices as an Optional Technology Path</h2>
+                <p class="mb-6">Binary and multilevel spintronic devices serve different roles within the architecture, but their adoption is optional and can be assessed independently for each application.</p>
+
                 <div class="grid-2-col mb-6">
                     <div class="glass-card">
                         <h3>Binary spintronic devices</h3>
-                        <p>Suited to fast and inspectable decisions such as:</p>
+                        <p>A binary spintronic crossbar may be used as an alternative implementation of the decision and rule-map block. It is not required for the Reflex architecture. Binary spintronic devices are suited to fast and inspectable decisions such as:</p>
                         <ul class="features-list">
                             <li>enable or inhibit</li>
                             <li>connect or bypass</li>
@@ -62,10 +100,11 @@
                             <li>permit or block</li>
                             <li>normal or fault</li>
                         </ul>
+                        <p class="mt-3">The binary spintronic array provides only the stored low-bit mapping between local conditions and candidate actions. It does not regulate or carry power. Its practical use should be assessed based on foundry availability, automotive temperature range, endurance, retention, sense margins, write energy, qualification and long-term supply.</p>
                     </div>
                     <div class="glass-card">
                         <h3>Multilevel spintronic devices</h3>
-                        <p>Support richer weighted operations, including:</p>
+                        <p>Multilevel spintronic devices support richer weighted operations, including:</p>
                         <ul class="features-list">
                             <li>sensor fusion</li>
                             <li>neural inference</li>
@@ -74,11 +113,14 @@
                             <li>model approximation</li>
                             <li>policy acceleration</li>
                         </ul>
+                        <p class="mt-3">REFLEXORA studies how these device classes can cooperate within the same architecture, rather than treating all forms of spintronic computation as interchangeable.</p>
                     </div>
                 </div>
 
+                <p class="mb-6">Until system-level advantages and qualification are demonstrated for the intended application, the conventional electronic implementation remains the direct engineering baseline.</p>
+
                 <h2 class="section-title">Decision–Power Path Isolation</h2>
-                <p class="mb-6">The reflex module remains in the decision path. The principal energy remains in the power path. A small, low-energy rule signal controls a much larger physical action — like a pilot valve or railway switch — allowing reflex intelligence to be integrated with conventional and certifiable power electronics.</p>
+                <p class="mb-6">The reflex module remains in the decision path. The principal energy remains in the power path. A small, low-energy rule signal controls a much larger physical action — like a pilot valve or railway switch — allowing reflex intelligence to be integrated with conventional and certifiable power electronics. This separation is independent of the decision-layer technology: whether the rule map is implemented with a microcontroller, an FPGA, a mixed-signal ASIC or an optional spintronic crossbar, the physical energy-transfer chain remains a conventional protected power-electronic path.</p>
 
                 <h2 class="section-title">World Models as Teachers</h2>
                 <p class="mb-6">World models explore thousands of situations during simulation, training or periodic optimization. Their conclusions are converted into bounded binary rules, safe thresholds, permission maps and multilevel weight matrices. The world model does not need to remain in every urgent control loop.</p>

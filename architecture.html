@@ -41,7 +41,7 @@
             <div class="container reveal">
                 <h1 class="section-title center">The Reflex–Policy Architecture</h1>
                 <p class="section-intro">Advanced world models and policy models are essential for prediction, learning, planning, and complex choice. But not every physical event should wait for the richest available computation. Some events require a bounded local action before delay becomes unsafe, inefficient, or energetically wasteful.</p>
-                <p class="section-intro mb-6">Reflex–Policy separates the urgent local path from slower supervisory intelligence. The Policy Layer defines permissions, context, and rules. The Reflex Layer executes only the first permitted action, verifies the physical response, and reports a compact event-action trace.</p>
+                <p class="section-intro mb-6">Reflex–Policy separates the urgent local path from slower supervisory intelligence. The Policy Layer defines permissions, context, and rules. The Reflex Layer executes only the first permitted action, verifies the physical response, and reports a compact event-action trace. The architecture is technology-neutral at the decision layer: reflex logic can be implemented with conventional electronics, and can adopt spintronic or other emerging technologies as an optional enhancement.</p>
             </div>
         </section>
 
@@ -74,6 +74,11 @@
                         <h3>World model as teacher</h3>
                         <p>High-cost models may learn or optimize rules offline or periodically, then transfer bounded rule maps to local execution layers that do not require full-model latency at runtime.</p>
                     </div>
+                </div>
+
+                <div class="glass-card feature-wide mb-6">
+                    <h3>Technology-neutral decision layer</h3>
+                    <p>The reflex logic can be implemented with conventional electronic components — microcontrollers, CPLDs, FPGAs, mixed-signal ASICs — or with optional spintronic crossbar arrays and other non-volatile memories. The architecture does not depend on any single device technology.</p>
                 </div>
 
                 <div class="cta-container-xl">

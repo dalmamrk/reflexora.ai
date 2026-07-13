@@ -1108,6 +1108,12 @@ section {
 }
 .app-card h4 { letter-spacing: -0.01em; }
 
+/* Full-width feature callout (distinct from the card grid) */
+.feature-wide {
+    background: linear-gradient(100deg, rgba(0, 242, 254, 0.06), transparent 55%), var(--surface-1);
+    border-color: rgba(0, 242, 254, 0.22);
+}
+
 /* Navigation — desktop active indicator + Contact CTA chip */
 .logo-text { letter-spacing: 1px; }
 @media (min-width: 48em) {
