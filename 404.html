@@ -6,9 +6,8 @@
     <title>Page Not Found | Reflexora.ai</title>
     <meta name="description" content="The page you are looking for could not be found.">
     <meta name="robots" content="noindex">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/styles.css">
     <style>
         .error-section {
@@ -97,7 +96,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Reflexora.ai. All rights reserved.</p>
+                <p class="footer-legal-id">
+                    Interactive Fully Electrical Vehicles S.r.l. (I-FEVS S.r.l.) &middot;
+                    P.IVA/C.F. 03395740040 &middot; REA CN-287520 &middot; Sommariva Bosco (CN), Italy
+                </p>
+                <nav class="footer-legal-links" aria-label="Legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="note-legali.html">Note legali</a>
+                </nav>
+                <p>&copy; 2026 Interactive Fully Electrical Vehicles S.r.l. (REFLEXORA). All rights reserved.</p>
             </div>
         </div>
     </footer>
