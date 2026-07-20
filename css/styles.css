@@ -20,6 +20,47 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* ============================================================
+   INDICE (T4 — consolidamento CSS, 2026-07-20)
+   Per orientare il prossimo agente. Sezioni nello stesso ordine del file:
+     1.  @font-face                  (self-hosting font — NON TOCCARE, vedi §5.6)
+     2.  :root                       (design tokens: colori, spacing, radius,
+                                      tipografia fluida, effects, refinement)
+     3.  Reset & base                (*, html, body, h1-h4, .text-gradient)
+     4.  Layout                      (.container, .bg-gradient-mesh + mesh)
+     5.  Navigation                  (.navbar, .nav-container, .logo, skip-link,
+                                      mobile-first nav, hamburger, breakpoint 48em)
+     6.  Buttons                     (.btn-primary/secondary/primary-sm + focus)
+     7.  Hero                        (.hero, .hero-content, .badge, .hero-title,
+                                      .hero-subtitle/tagline, .hero-actions,
+                                      .hero-visual, .hero-placeholder)
+     8.  Glass cards                 (.glass-card consolidated + hover + ::after)
+     9.  Sections                    (section padding, .section-title, .page-title,
+                                      .grid-2-col, .grid-3-col)
+     10. Technology / crossbar       (.tech-container, .tech-visual, .crossbar-grid
+                                      + .hline/.vline/.node + keyframes signalH/V,
+                                      nodeBlink, nodeBlinkBlue)
+     11. Application cards           (.app-card consolidated + h3/p + delay-*)
+     12. Footer                      (.footer, .footer-content, affiliations,
+                                      .footer-legal-id, .footer-legal-links)
+     13. Scroll reveal               (.js .reveal — gated, no-JS safe)
+     14. Utility & semantic layout   (.section-intro, .cta-container*, .btn-icon,
+                                      .section-highlight, .card-centered, .ip-note,
+                                      .position-intro/statement, .page-main, .contact-page)
+     15. Responsive                  (media query min-width 601/901px)
+     16. Accessibility               (prefers-reduced-motion universal, :focus-visible)
+     17. Design refinement pass      (eyebrow, badge, nav active, body::before grid,
+                                      bg-gradient-mesh refinement — era l'ultimo
+                                      strato del 2026-07-12, ora consolidato in sede)
+     18. Legal pages                 (.legal-* — bilingue IT/EN — NON TOCCARE,
+                                      vedi §7 regole commessa)
+
+   Note consolidate (T4): .neural-sphere + .ring* + .core + 4 @keyframes
+   rimossi come codice morto dopo .hero-placeholder. .btn-primary,
+   .glass-card, .app-card, .hero-title, .section-title, .navbar.scrolled
+   portati a una sola dichiarazione (vedi commenti "consolidated (T4)").
+   ============================================================ */
+
 /* CSS Variables for Design System */
 :root {
     /* Colors */
@@ -164,10 +205,12 @@ h1, h2, h3, h4 {
     border-bottom: 1px solid transparent;
 }
 
+/* Navbar scrolled — consolidated (T4): padding dalla base, bg/border-color
+   sovrascritti dal design pass 2026-07-12 (0.72 opacity, hairline). */
 .navbar.scrolled {
     padding: 1rem 0;
-    background: rgba(4, 6, 9, 0.8);
-    border-bottom: 1px solid var(--glass-border);
+    background: rgba(4, 6, 9, 0.72);
+    border-bottom: 1px solid var(--hairline);
 }
 
 .nav-container {
@@ -522,122 +565,44 @@ h1, h2, h3, h4 {
 }
 .hero-placeholder__text b { color: var(--text-primary); font-weight: 700; }
 
-.neural-sphere {
-    position: relative;
-    width: 350px;
-    height: 350px;
-    perspective: 1200px;
-}
+/* [T4] Rimosso il blocco .neural-sphere + .ring* + .core + 4 @keyframes (spin1/2/3,
+   pulseCore): era codice morto dopo la sostituzione della sfera con .hero-placeholder
+   (Claude Code, 2026-07-20). Nessuna pagina referenzia più questi selettori. */
 
-.ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 242, 254, 0.1);
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.15), inset 0 0 20px rgba(0, 242, 254, 0.15);
-    transform-style: preserve-3d;
-}
-
-.ring::before, .ring::after {
-    content: '';
-    position: absolute;
-    width: 8px; height: 8px;
-    background: var(--accent-cyan);
-    border-radius: 50%;
-    box-shadow: 0 0 20px 4px var(--accent-cyan);
-    top: -4px; left: 50%;
-    transform: translateX(-50%);
-}
-
-.ring::after {
-    top: auto; bottom: -4px;
-    background: var(--accent-purple);
-    box-shadow: 0 0 20px 4px var(--accent-purple);
-}
-
-.ring-1 { animation: spin1 12s linear infinite; }
-.ring-2 { animation: spin2 18s linear infinite reverse; border-color: rgba(139, 92, 246, 0.2); }
-.ring-3 { animation: spin3 24s linear infinite; border-color: rgba(79, 172, 254, 0.2); }
-
-.core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #fff 0%, var(--accent-cyan) 40%, transparent 80%);
-    border-radius: 50%;
-    box-shadow: 0 0 60px var(--accent-cyan), inset 0 0 30px #fff;
-    animation: pulseCore 3s ease-in-out infinite alternate;
-}
-
-.core::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 25px; height: 25px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 25px #fff;
-}
-
-@keyframes spin1 {
-    0% { transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg); }
-    100% { transform: rotateX(60deg) rotateY(360deg) rotateZ(360deg); }
-}
-
-@keyframes spin2 {
-    0% { transform: rotateX(120deg) rotateY(45deg) rotateZ(0deg); }
-    100% { transform: rotateX(120deg) rotateY(405deg) rotateZ(360deg); }
-}
-
-@keyframes spin3 {
-    0% { transform: rotateX(30deg) rotateY(90deg) rotateZ(0deg); }
-    100% { transform: rotateX(30deg) rotateY(450deg) rotateZ(360deg); }
-}
-
-@keyframes pulseCore {
-    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.8; filter: hue-rotate(0deg); }
-    100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; filter: hue-rotate(30deg); box-shadow: 0 0 100px var(--accent-cyan); }
-}
-
-/* Glassmorphism Cards */
+/* Glass cards — consolidated (T4): unica dichiarazione che raccoglie le proprietà
+   finali (design pass 2026-07-12) + le props strutturali della base non overridate
+   (position, overflow, padding, z-index). Rimosso il vecchio shine-sweep ::before
+   (vezzo consumer, in conflitto col tono research division). Sostituito da una
+   top accent line ::after sobria. */
 .glass-card {
     position: relative;
     overflow: hidden;
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: var(--glass-shadow);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+    background: var(--surface-1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    transition: transform 0.35s var(--ease-out), border-color 0.35s var(--ease-out),
+                box-shadow 0.35s var(--ease-out), background 0.35s var(--ease-out);
     z-index: 1;
 }
 
-.glass-card::before {
+.glass-card:hover {
+    transform: translateY(-4px);
+    background: var(--surface-2);
+    border-color: rgba(0, 242, 254, 0.35);
+    box-shadow: 0 24px 48px -24px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,242,254,0.12);
+}
+
+/* Top accent line — hairline gradient sobrio (sostituisce il vecchio shine sweep). */
+.glass-card::after {
     content: '';
     position: absolute;
-    top: 0; left: -100%;
-    width: 50%; height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
-    transform: skewX(-25deg);
-    transition: left 0.8s ease;
-    z-index: -1;
-}
-
-.glass-card:hover::before {
-    left: 200%;
-}
-
-.glass-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(0, 242, 254, 0.3);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.15);
+    top: 0; left: 1.75rem; right: 1.75rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--hairline-strong), transparent);
 }
 
 /* Sections */
@@ -645,13 +610,28 @@ section {
     padding: 6rem 0;
 }
 
+/* Section title — consolidated (T4): font-size/margin dalla base + font-weight/
+   letter-spacing/line-height dal design pass 2026-07-12. Unica dichiarazione. */
 .section-title {
     font-size: var(--fs-h2);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     margin-bottom: 3rem;
 }
 
 .section-title.center {
     text-align: center;
+}
+
+.section-title.center::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    margin: 1.15rem auto 0;
+    background: var(--grad-accent);
+    border-radius: 2px;
 }
 
 /* Page title — H1 delle pagine di profondità (architecture, technology, applications,
@@ -854,38 +834,25 @@ section {
 .pulse-fast { animation: nodeBlink 2.5s infinite; animation-delay: 1s; }
 .pulse-blue { animation: nodeBlinkBlue 3.5s infinite; animation-delay: 0.5s; }
 
-/* Applications specific */
+/* Application cards — consolidated (T4): unica dichiaruzione con le proprietà
+   finali del design pass 2026-07-12 + le props strutturali della base non
+   overridate (position, overflow, z-index). Rimosso il vecchio shine-sweep ::before. */
 .app-card {
     position: relative;
     overflow: hidden;
-    background: rgba(15, 23, 42, 0.4);
-    border: 1px solid var(--glass-border);
-    padding: 2.5rem 2rem;
-    border-radius: 15px;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: 1.9rem;
+    transition: transform 0.35s var(--ease-out), border-color 0.35s var(--ease-out),
+                background 0.35s var(--ease-out);
     z-index: 1;
 }
 
-.app-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 50%; height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255,255,255,0.04), transparent);
-    transform: skewX(-25deg);
-    transition: left 0.8s ease;
-    z-index: -1;
-}
-
-.app-card:hover::before {
-    left: 200%;
-}
-
 .app-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(79, 172, 254, 0.4);
-    background: rgba(15, 23, 42, 0.8);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 172, 254, 0.1);
+    transform: translateY(-4px);
+    border-color: rgba(0, 242, 254, 0.35);
+    background: var(--surface-2);
 }
 
 .app-card h3 {
@@ -1163,62 +1130,6 @@ section {
 .hero-subtitle { color: #cbd5e1; }
 .hero-subtitle-sm { color: var(--text-secondary); }
 
-/* Section titles — tighter, with a short gradient accent under centered ones */
-.section-title {
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-}
-.section-title.center::after {
-    content: '';
-    display: block;
-    width: 3rem; height: 2px;
-    margin: 1.15rem auto 0;
-    background: var(--grad-accent);
-    border-radius: 2px;
-}
-
-/* Cards — hairline surfaces, precise hover, top accent line */
-.glass-card {
-    background: var(--surface-1);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-md);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    transition: transform 0.35s var(--ease-out), border-color 0.35s var(--ease-out),
-                box-shadow 0.35s var(--ease-out), background 0.35s var(--ease-out);
-}
-.glass-card:hover {
-    transform: translateY(-4px);
-    background: var(--surface-2);
-    border-color: rgba(0, 242, 254, 0.35);
-    box-shadow: 0 24px 48px -24px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,242,254,0.12);
-}
-.glass-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 1.75rem; right: 1.75rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--hairline-strong), transparent);
-}
-
-/* Application / trait cards */
-.app-card {
-    background: var(--surface-1);
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-md);
-    padding: 1.9rem;
-    transition: transform 0.35s var(--ease-out), border-color 0.35s var(--ease-out),
-                background 0.35s var(--ease-out);
-}
-.app-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0, 242, 254, 0.35);
-    background: var(--surface-2);
-}
-.app-card h3 { letter-spacing: -0.01em; }
-
 /* Full-width feature callout (distinct from the card grid) */
 .feature-wide {
     background: linear-gradient(100deg, rgba(0, 242, 254, 0.06), transparent 55%), var(--surface-1);
@@ -1253,7 +1164,6 @@ section {
         color: #fff;
     }
 }
-.navbar.scrolled { background: rgba(4, 6, 9, 0.72); border-bottom-color: var(--hairline); }
 
 /* Background — calmer glow + faint engineered grid that fades down the page */
 .bg-gradient-mesh::before {
