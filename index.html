@@ -6,9 +6,8 @@
     <title>Reflexora.ai | The Reflex-Policy Architecture for Physical and Spatial AI</title>
     <meta name="description" content="We develop the architecture and intellectual property that assign each physical event to the lowest sufficient layer capable of acting safely, correctly, and energy-efficiently.">
     <!-- Preconnect to Google Fonts for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -48,6 +47,7 @@
             <h1 class="hero-title">
                 <span class="text-gradient">REFLEXORA</span>
             </h1>
+            <p class="hero-tagline">A Physical AI architecture and IP platform — a research division of IFEVS.</p>
             <p class="hero-subtitle">
                 We develop the architecture and intellectual property that assign each physical event to the lowest sufficient layer capable of acting safely, correctly, and energy-efficiently.
             </p>
@@ -60,16 +60,26 @@
             </div>
         </div>
         
-        <!-- Abstract Neural Representation -->
+        <!-- SEGNAPOSTO TEMPORANEO — qui verrà integrata l'animazione Reflex-Policy (V10).
+             Da sostituire quando il componente definitivo sarà pronto. -->
         <div class="hero-visual reveal-delay">
-            <div class="neural-sphere">
-                <div class="ring ring-1"></div>
-                <div class="ring ring-2"></div>
-                <div class="ring ring-3"></div>
-                <div class="core"></div>
+            <div class="hero-placeholder" role="img" aria-label="Segnaposto: qui verrà inserita l'animazione Reflex-Policy (V10)">
+                <span class="hero-placeholder__eyebrow">Placeholder</span>
+                <span class="hero-placeholder__text">Qui verrà piazzata<br>l'animazione Reflex&ndash;Policy <b>(V10)</b></span>
             </div>
         </div>
     </header>
+
+    <!-- SEGNAPOSTO — qui verrà integrato il componente ANIMATO Reflex-Policy
+         (V10 desktop + M1 mobile). Da sostituire col componente definitivo. -->
+    <section class="anim-slot" id="reflex-policy-animation" aria-label="Reflex-Policy interactive animation (placeholder)">
+        <div class="container">
+            <div class="hero-placeholder anim-placeholder" role="img" aria-label="Segnaposto: qui verrà integrata l'animazione interattiva Reflex-Policy (V10 desktop, M1 mobile)">
+                <span class="hero-placeholder__eyebrow">Placeholder &middot; componente animato</span>
+                <span class="hero-placeholder__text">Qui verrà integrata l'animazione interattiva<br>Reflex&ndash;Policy <b>(V10 desktop &middot; M1 mobile)</b></span>
+            </div>
+        </div>
+    </section>
 
     <!-- What REFLEXORA is -->
     <section class="what-is" id="what-is">
@@ -142,15 +152,15 @@
             <h2 class="section-title center reveal">Application Areas</h2>
             <div class="grid-3-col">
                 <div class="app-card reveal">
-                    <h4>Robotics, Mobility &amp; Autonomous Systems</h4>
+                    <h3>Robotics, Mobility &amp; Autonomous Systems</h3>
                     <p>Local impact, torque, and balance reflexes combined with predictive energy management and bounded local action for autonomous systems. The reflex logic operates with conventional electronics; spintronic rule maps are an optional future technology path.</p>
                 </div>
                 <div class="app-card reveal delay-100">
-                    <h4>Energy Harvesting &amp; Storage</h4>
+                    <h3>Energy Harvesting &amp; Storage</h3>
                     <p>Local PV shadow response and module-local battery reflex balancing, isolating faults under Battery Management System supervision. The Battery Reflex Module demonstrates that the complete reflex function — measurement, rule evaluation, energy conversion, injection and verification — can be developed entirely with conventional automotive electronics.</p>
                 </div>
                 <div class="app-card reveal delay-200">
-                    <h4>Edge AI, IoT &amp; Sensing</h4>
+                    <h3>Edge AI, IoT &amp; Sensing</h3>
                     <p>Always-on event detection, Spatial AI event-to-action contracts, and bio-inspired safety-critical edge systems. The decision layer is technology-neutral: conventional MCU, CPLD or FPGA implementations provide the direct engineering baseline, with spintronic arrays available as an optional non-volatile rule-map technology.</p>
                 </div>
             </div>
@@ -208,7 +218,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Reflexora.ai. All rights reserved.</p>
+                <p class="footer-legal-id">
+                    Interactive Fully Electrical Vehicles S.r.l. (I-FEVS S.r.l.) &middot;
+                    P.IVA/C.F. 03395740040 &middot; REA CN-287520 &middot; Sommariva Bosco (CN), Italy
+                </p>
+                <nav class="footer-legal-links" aria-label="Legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="note-legali.html">Note legali</a>
+                </nav>
+                <p>&copy; 2026 Interactive Fully Electrical Vehicles S.r.l. (REFLEXORA). All rights reserved.</p>
             </div>
         </div>
     </footer>

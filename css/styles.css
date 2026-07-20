@@ -440,7 +440,12 @@ h1, h2, h3, h4 {
 }
 
 .hero-title {
-    font-size: 2.2rem;
+    /* Consolidato in un'unica dichiarazione (T3): usa --fs-h1 (già fluido via clamp),
+       niente override per breakpoint. Prima era frammentato in 4 punti del CSS. */
+    font-size: var(--fs-h1);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
     margin-bottom: 1.5rem;
 }
 
@@ -449,6 +454,19 @@ h1, h2, h3, h4 {
     color: var(--text-secondary);
     margin: 0 auto 2rem auto;
     max-width: 600px;
+}
+
+/* Hero tagline (T3) — one-liner sotto l'H1 brand, dichiara cosa fa REFLEXORA
+   prima del paragrafo lungo. Copy dal posizionamento già nei testi. */
+.hero-tagline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1rem + 0.6vw, 1.4rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    opacity: 0.92;
+    margin: -0.5rem auto 1.75rem auto;
+    max-width: 640px;
 }
 
 .hero-actions {
@@ -634,6 +652,33 @@ section {
 
 .section-title.center {
     text-align: center;
+}
+
+/* Page title — H1 delle pagine di profondità (architecture, technology, applications,
+   research, company, contact). Distinto dal .section-title (H2) per dare vera gerarchia
+   tipografica: --fs-h1 vs --fs-h2. (T3) */
+.page-title {
+    font-size: var(--fs-h1);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 3rem;
+}
+
+.page-title.center {
+    text-align: center;
+}
+
+/* Variant che accende la sottolineatura gradient (coerente con .section-title.center
+   nel design pass). Usata dagli H1 di pagina centrati. */
+.page-title.center::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    margin: 1.25rem auto 0;
+    background: var(--grad-accent);
+    border-radius: 2px;
 }
 
 .grid-2-col {
@@ -843,9 +888,11 @@ section {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 172, 254, 0.1);
 }
 
-.app-card h4 {
+.app-card h3 {
     color: var(--accent-cyan);
-    font-size: 1.3rem;
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .app-card p {
@@ -1020,14 +1067,12 @@ section {
 
 /* Responsive — mobile-first (min-width). Base = mobile; qui si sale. (T-2.6) */
 @media (min-width: 601px) {
-    .hero-title { font-size: 3rem; }
     .hero-actions { flex-direction: row; justify-content: center; }
     .btn-primary, .btn-secondary { width: auto; text-align: initial; }
 }
 
 @media (min-width: 901px) {
     .hero { flex-direction: row; text-align: left; padding-top: 6rem; }
-    .hero-title { font-size: 4rem; }
     .hero-subtitle { margin: 0 0 2.5rem 0; }
     .hero-actions { justify-content: flex-start; }
     .hero-visual { height: 500px; margin-top: 0; }
@@ -1072,6 +1117,12 @@ section {
     color: var(--accent-cyan);
     margin-bottom: 1rem;
 }
+/* Variant centrata per essere usata sopra un .page-title.center (T3). */
+.eyebrow.center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 .eyebrow::before {
     content: '';
     width: 1.75rem; height: 1px;
@@ -1107,14 +1158,8 @@ section {
 }
 @keyframes badgePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-/* Hero title — larger, tighter, editorial */
-.hero-title {
-    font-size: var(--fs-h1);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 0.98;
-    margin-bottom: 1.5rem;
-}
+/* Hero title: consolidato nella dichiarazione base (riga ~442, T3). Qui solo i
+   ritocchi colore dei sottotitoli hero (non dimensione, che è a --fs-h1). */
 .hero-subtitle { color: #cbd5e1; }
 .hero-subtitle-sm { color: var(--text-secondary); }
 
@@ -1172,7 +1217,7 @@ section {
     border-color: rgba(0, 242, 254, 0.35);
     background: var(--surface-2);
 }
-.app-card h4 { letter-spacing: -0.01em; }
+.app-card h3 { letter-spacing: -0.01em; }
 
 /* Full-width feature callout (distinct from the card grid) */
 .feature-wide {
