@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technology — REFLEXORA</title>
     <meta name="description" content="We develop the architecture and intellectual property that assign each physical event to the lowest sufficient layer capable of acting safely, correctly, and energy-efficiently.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Background Animated Gradient (pure CSS) -->
+    <div class="bg-gradient-mesh"></div>
+
     <!-- @include: header -->
 <a href="#main" class="skip-link">Skip to content</a>
     <!-- Navigation -->
@@ -36,7 +38,7 @@
     </header>
 <!-- @endinclude: header -->
 
-    <main id="main" style="min-height: 70vh; padding: 8rem 0;">
+    <main id="main" class="page-main">
         <section>
             <div class="container reveal">
                 <h1 class="section-title center">A Technology-Neutral Architecture</h1>
@@ -150,7 +152,16 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Reflexora.ai. All rights reserved.</p>
+                <p class="footer-legal-id">
+                    Interactive Fully Electrical Vehicles S.r.l. (I-FEVS S.r.l.) &middot;
+                    P.IVA/C.F. 03395740040 &middot; REA CN-287520 &middot; Sommariva Bosco (CN), Italy
+                </p>
+                <nav class="footer-legal-links" aria-label="Legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <a href="note-legali.html">Note legali</a>
+                </nav>
+                <p>&copy; 2026 Interactive Fully Electrical Vehicles S.r.l. (REFLEXORA). All rights reserved.</p>
             </div>
         </div>
     </footer>
