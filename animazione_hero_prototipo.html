@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflex-Policy Architecture - Cooperative Physical AI</title>
+<!-- Deep-Tech Monospace Font -->
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Deep-Tech Color Palette */
+    --bg-dark: #07090f;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    /* Layer Colors */
+    --col-pol: #8b5cf6;    /* Purple (Policy/Cloud) */
+    --col-ref: #06b6d4;    /* Cyan (Reflex/Logic) */
+    --col-power: #ef4444;  /* Red (Power Electronics/Energy) */
+    --col-sens: #10b981;   /* Green (Physical Events/Sensing) */
+    --col-bus: #f59e0b;    /* Amber (Balancing Bus) */
+  }
+  
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .diagram-container {
+    width: 100%;
+    max-width: 1100px;
+    height: 850px;
+    position: relative;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* --- NODE (CARD) STYLES --- */
+  .node rect {
+    fill: #0d121c;
+    stroke-width: 2px;
+    rx: 6px; 
+    transition: all 0.3s ease;
+  }
+  
+  .node:hover rect {
+    filter: brightness(1.5);
+    cursor: pointer;
+  }
+
+  /* Specific Layer Glassmorphism */
+  .node-pol rect { stroke: var(--col-pol); fill: rgba(139, 92, 246, 0.05); }
+  .node-ref rect { stroke: var(--col-ref); fill: rgba(6, 182, 212, 0.08); }
+  .node-power rect { stroke: var(--col-power); fill: rgba(239, 68, 68, 0.05); }
+  .node-phys rect { stroke: var(--col-sens); fill: rgba(16, 185, 129, 0.05); rx: 20px; }
+
+  /* Node Text */
+  .node text {
+    fill: var(--text-main);
+    font-size: 14px;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  .node text.title { font-weight: 700; font-size: 15px; }
+  .node text.subtitle { fill: var(--text-muted); font-size: 12px; opacity: 0.8;}
+
+  /* --- BASE LINES --- */
+  .connection-line {
+    fill: none;
+    stroke: #1e293b;
+    stroke-width: 2px;
+  }
+  .bus-line {
+    stroke: #334155;
+    stroke-width: 4px;
+  }
+
+  /* --- FLOW ANIMATIONS --- */
+  .flow-line {
+    fill: none;
+    animation: flow linear infinite;
+  }
+
+  /* Differentiated Speeds & Styles */
+  .flow-pol { 
+    stroke: var(--col-pol); stroke-width: 2px; stroke-dasharray: 8 16; 
+    animation-duration: 2s; 
+  }
+  .flow-ref { 
+    stroke: var(--col-ref); stroke-width: 2px; stroke-dasharray: 12 12; 
+    animation-duration: 0.5s; /* Very fast reflex */
+  }
+  .flow-sens { 
+    stroke: var(--col-sens); stroke-width: 2px; stroke-dasharray: 6 12; 
+    animation-duration: 0.6s; 
+  }
+  .flow-power { 
+    stroke: var(--col-power); stroke-width: 4px; stroke-dasharray: 15 15; 
+    animation-duration: 0.8s; 
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6));
+  }
+  .flow-bus { 
+    stroke: var(--col-bus); stroke-width: 4px; stroke-dasharray: 20 20; 
+    animation-duration: 1s; 
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
+  }
+
+  @keyframes flow {
+    to { stroke-dashoffset: -40; }
+  }
+
+  /* --- BOUNDED AUTHORITY (Local Zones) --- */
+  .bounded-authority {
+    fill: rgba(6, 182, 212, 0.015);
+    stroke: #334155;
+    stroke-width: 2px;
+    stroke-dasharray: 10 10;
+    rx: 16px;
+    animation: pulse-border 5s infinite alternate;
+  }
+
+  @keyframes pulse-border {
+    0% { stroke: #334155; }
+    100% { stroke: var(--col-ref); filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.2)); }
+  }
+
+  /* Labels */
+  .label-bg { fill: #07090f; stroke: #1e293b; stroke-width: 1px; }
+  .label-text { fill: var(--text-muted); font-size: 11px; font-weight: 700; }
+  .label-text.center { text-anchor: middle; }
+  .label-text.end { text-anchor: end; }
+  .label-text.start { text-anchor: start; }
+  
+  /* Glows */
+  .glow-ref rect { filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.3)); }
+
+</style>
+</head>
+<body>
+
+<div class="diagram-container">
+  <svg viewBox="0 0 1000 850" xmlns="http://www.w3.org/2000/svg">
+    
+    <!-- BOUNDED AUTHORITY ZONES -->
+    <!-- PV Side Local Zone -->
+    <rect class="bounded-authority" x="80" y="210" width="340" height="540" />
+    <text x="250" y="235" class="label-text center" fill="#06b6d4" letter-spacing="2">PV-SIDE LOCAL REFLEX ZONE</text>
+
+    <!-- Battery Side Local Zone -->
+    <rect class="bounded-authority" x="580" y="210" width="340" height="540" />
+    <text x="750" y="235" class="label-text center" fill="#06b6d4" letter-spacing="2">BATTERY-SIDE LOCAL REFLEX ZONE</text>
+
+    <!-- ================= CONNECTIONS (BASE) ================= -->
+    
+    <!-- Power Path -->
+    <path class="connection-line" d="M 250 650 L 250 520" /> <!-- PV to DCDC -->
+    <path class="bus-line" d="M 370 485 L 630 485" />        <!-- Balancing Bus (DCDC to Inj) -->
+    <path class="connection-line" d="M 750 520 L 750 650" /> <!-- Inj to Battery -->
+
+    <!-- Data/Sensing Path (PV Side) -->
+    <path class="connection-line" d="M 170 650 L 170 320" /> <!-- PV to PV-Reflex -->
+    <path class="connection-line" d="M 290 320 L 290 450" /> <!-- PV-Reflex to DCDC -->
+
+    <!-- Data/Sensing Path (Battery Side) -->
+    <path class="connection-line" d="M 830 650 L 830 320" /> <!-- Battery to Bat-Reflex -->
+    <path class="connection-line" d="M 710 320 L 710 450" /> <!-- Bat-Reflex to Inj -->
+
+    <!-- Policy / Supervision Path -->
+    <path class="connection-line" d="M 400 110 L 400 170 L 250 170 L 250 250" /> <!-- Pol to PV-Ref -->
+    <path class="connection-line" d="M 600 110 L 600 170 L 750 170 L 750 250" /> <!-- Pol to Bat-Ref -->
+
+    
+    <!-- ================= FLOW ANIMATIONS ================= -->
+    
+    <!-- Power Flow -->
+    <path class="flow-line flow-power" d="M 250 650 L 250 520" />
+    <path class="flow-line flow-bus" d="M 370 485 L 630 485" />
+    <path class="flow-line flow-power" d="M 750 520 L 750 650" />
+
+    <!-- Data Flow (Fast Reflex) -->
+    <path class="flow-line flow-sens" d="M 170 650 L 170 320" />
+    <path class="flow-line flow-ref" d="M 290 320 L 290 450" />
+    <path class="flow-line flow-sens" d="M 830 650 L 830 320" />
+    <path class="flow-line flow-ref" d="M 710 320 L 710 450" />
+
+    <!-- Policy Flow -->
+    <path class="flow-line flow-pol" d="M 400 110 L 400 170 L 250 170 L 250 250" />
+    <path class="flow-line flow-pol" d="M 600 110 L 600 170 L 750 170 L 750 250" />
+
+
+    <!-- ================= LABELS ================= -->
+    
+    <!-- Policy Labels -->
+    <rect x="250" y="158" width="130" height="24" rx="4" class="label-bg"/>
+    <text x="315" y="174" class="label-text center">Permission Envelope</text>
+
+    <rect x="620" y="158" width="130" height="24" rx="4" class="label-bg"/>
+    <text x="685" y="174" class="label-text center">Permission Envelope</text>
+
+    <!-- Balancing Bus Label -->
+    <rect x="430" y="450" width="140" height="24" rx="4" class="label-bg"/>
+    <text x="500" y="466" class="label-text center" fill="#f59e0b">DC BALANCING BUS</text>
+
+    <!-- PV Local Flags & Commands -->
+    <text x="160" y="400" class="label-text end" fill="#10b981">Local Flags (V, T, Shade)</text>
+    <text x="300" y="400" class="label-text start" fill="#06b6d4">Bypass / MPPT Wake</text>
+    <text x="240" y="580" class="label-text end" fill="#ef4444">Harvested Energy</text>
+
+    <!-- Battery Local Flags & Commands -->
+    <text x="840" y="400" class="label-text start" fill="#10b981">Local Flags (V, T, Fault)</text>
+    <text x="700" y="400" class="label-text end" fill="#06b6d4">One-Hot Route Enable</text>
+    <text x="760" y="580" class="label-text start" fill="#ef4444">Conditioned Energy</text>
+
+
+    <!-- ================= NODES ================= -->
+    
+    <!-- Policy Layer (Top) -->
+    <g class="node node-pol" transform="translate(350, 40)">
+      <rect x="0" y="0" width="300" height="70" />
+      <text x="150" y="30" class="title">POLICY LAYER / MAIN BMS</text>
+      <text x="150" y="50" class="subtitle">Supervision, Learning & Safety</text>
+    </g>
+
+    <!-- PV-Side Reflex -->
+    <g class="node node-ref glow-ref" transform="translate(130, 250)">
+      <rect x="0" y="0" width="240" height="70" />
+      <text x="120" y="30" class="title">PV-SIDE REFLEX</text>
+      <text x="120" y="50" class="subtitle">Deterministic Rule Map</text>
+    </g>
+
+    <!-- Battery-Side Reflex -->
+    <g class="node node-ref glow-ref" transform="translate(630, 250)">
+      <rect x="0" y="0" width="240" height="70" />
+      <text x="120" y="30" class="title">BATTERY-SIDE REFLEX</text>
+      <text x="120" y="50" class="subtitle">Deterministic Rule Map</text>
+    </g>
+
+    <!-- DC-DC Converter (PV Side Power) -->
+    <g class="node node-power" transform="translate(130, 450)">
+      <rect x="0" y="0" width="240" height="70" />
+      <text x="120" y="30" class="title">DC-DC CONVERTER</text>
+      <text x="120" y="50" class="subtitle">MPPT & Power Conditioning</text>
+    </g>
+
+    <!-- Isolated Injection (Battery Side Power) -->
+    <g class="node node-power" transform="translate(630, 450)">
+      <rect x="0" y="0" width="240" height="70" />
+      <text x="120" y="30" class="title">ISOLATED INJECTION</text>
+      <text x="120" y="50" class="subtitle">Multi-Output Power Stage</text>
+    </g>
+
+    <!-- PV Physical -->
+    <g class="node node-phys" transform="translate(130, 650)">
+      <rect x="0" y="0" width="240" height="70" />
+      <text x="120" y="30" class="title">PV SEGMENTS</text>
+      <text x="120" y="50" class="subtitle">Physical Energy Harvest</text>
+    </g>
+
+    <!-- Battery Physical -->
+    <g class="node node-phys" transform="translate(630, 650)">
+      <rect x="0" y="0" width="240" height="70" />
+      <text x="120" y="30" class="title">BATTERY CLUSTERS</text>
+      <text x="120" y="50" class="subtitle">Physical Energy Storage</text>
+    </g>
+
+  </svg>
+</div>
+
+</body>
+</html>

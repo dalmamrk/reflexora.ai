@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflex-Policy Architecture — Hero Diagram V2</title>
+<style>
+  /* ============================================================
+     PREVIEW HARNESS — solo per valutazione, NON va integrato.
+     Riproduce lo slot .hero-visual di index.html alle misure reali
+     (desktop 568×500 · mobile 335×300).
+     ============================================================ */
+  :root {
+    --bg-dark: #070a13;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --hairline: rgba(255, 255, 255, 0.10);
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    padding: 2rem 1.25rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .harness-note {
+    max-width: 700px; font-size: 0.72rem; line-height: 1.75;
+    color: var(--text-secondary); letter-spacing: 0.03em; text-align: center;
+  }
+  .harness-note b { color: #00f2fe; font-weight: 500; }
+  .frame-label {
+    font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--text-secondary); margin-bottom: 0.6rem; display: block; text-align: center;
+  }
+  .frame { border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; }
+  .frame--desktop { width: 568px; height: 500px; max-width: 100%; }
+  .frame--mobile  { width: 335px; height: 300px; max-width: 100%; }
+
+  /* ============================================================
+     COMPONENTE — questo è ciò che verrà messo in .hero-visual.
+     Tutto scoped sotto .rp-diagram: nessuna collisione col sito.
+     Font e colori allineati ai token di css/styles.css.
+     ============================================================ */
+  .rp-diagram {
+    /* Palette semantica dei layer: semantica identica al prototipo,
+       tonalità armonizzate col design system del sito. */
+    --rp-policy: #8b5cf6;   /* Policy / Cloud             */
+    --rp-reflex: #00f2fe;   /* Reflex / Logic (accento sito) */
+    --rp-power:  #ff5a45;   /* Power electronics / Energy */
+    --rp-sense:  #2ee6a8;   /* Physical events / Sensing  */
+    --rp-bus:    #ffb224;   /* Balancing bus              */
+    --rp-ink:    #f8fafc;
+    --rp-muted:  #93a4bd;
+    --rp-line:   rgba(255, 255, 255, 0.13);
+
+    width: 100%; height: 100%; display: block;
+    font-family: var(--font-mono);
+  }
+  .rp-diagram svg { width: 100%; height: 100%; display: block; }
+
+  /* ---------- Nodi ---------- */
+  .rp-node rect.rp-card { rx: 9; stroke-width: 1.25; }
+  .rp-node .rp-title {
+    fill: var(--rp-ink); font-size: 15px; font-weight: 700;
+    letter-spacing: 0.05em; text-anchor: middle;
+  }
+  .rp-node .rp-sub {
+    fill: var(--rp-muted); font-size: 10.5px; font-weight: 400;
+    letter-spacing: 0.015em; text-anchor: middle;
+  }
+  .rp-node .rp-crest { stroke-width: 1.25; opacity: .85; }
+
+  .rp-node--policy rect.rp-card { fill: url(#rpGradPolicy); stroke: rgba(139,92,246,.55); }
+  .rp-node--policy .rp-crest    { stroke: var(--rp-policy); }
+  .rp-node--reflex rect.rp-card { fill: url(#rpGradReflex); stroke: rgba(0,242,254,.6); }
+  .rp-node--reflex .rp-crest    { stroke: var(--rp-reflex); }
+  .rp-node--power  rect.rp-card { fill: url(#rpGradPower);  stroke: rgba(255,90,69,.5); }
+  .rp-node--power  .rp-crest    { stroke: var(--rp-power); }
+  .rp-node--phys   rect.rp-card { fill: url(#rpGradSense);  stroke: rgba(46,230,168,.45); rx: 16; }
+  .rp-node--phys   .rp-crest    { stroke: var(--rp-sense); }
+
+  /* Il layer reflex è il protagonista: glow marcato + respiro */
+  .rp-node--reflex { filter: drop-shadow(0 0 10px rgba(0, 242, 254, .28)); }
+  .rp-node--reflex rect.rp-card { animation: rpBreathe 4.5s ease-in-out infinite; }
+  @keyframes rpBreathe {
+    0%, 100% { stroke: rgba(0,242,254,.45); }
+    50%      { stroke: rgba(0,242,254,.95); }
+  }
+  .rp-node--power { filter: drop-shadow(0 0 8px rgba(255, 90, 69, .16)); }
+
+  /* ---------- Zone di autorità delimitata ---------- */
+  .rp-zone {
+    fill: rgba(0, 242, 254, 0.018);
+    stroke: rgba(255,255,255,.085); stroke-width: 1; stroke-dasharray: 3 7; rx: 14;
+  }
+  /* parentesi angolari: linguaggio da schema tecnico */
+  .rp-bracket {
+    fill: none; stroke-width: 1.6; stroke-linecap: round;
+    animation: rpBracket 5s ease-in-out infinite alternate;
+  }
+  @keyframes rpBracket {
+    0%   { stroke: rgba(0,242,254,.25); }
+    100% { stroke: rgba(0,242,254,.75); }
+  }
+  .rp-zone-label {
+    fill: var(--rp-reflex); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.1em; text-anchor: middle; opacity: .8;
+  }
+
+  /* ---------- Tracce e flussi ---------- */
+  .rp-trace { fill: none; stroke: var(--rp-line); stroke-width: 1.25; }
+  .rp-trace--bus { stroke: rgba(255,255,255,.16); stroke-width: 3.5; stroke-linecap: round; }
+
+  .rp-flow { fill: none; stroke-linecap: round; animation: rpFlow linear infinite; }
+  @keyframes rpFlow { to { stroke-dashoffset: -40; } }
+
+  .rp-flow--policy { stroke: var(--rp-policy); stroke-width: 1.6; stroke-dasharray: 7 17;
+                     animation-duration: 2s;  filter: drop-shadow(0 0 4px rgba(139,92,246,.5)); }
+  .rp-flow--reflex { stroke: var(--rp-reflex); stroke-width: 1.8; stroke-dasharray: 11 13;
+                     animation-duration: .5s; filter: drop-shadow(0 0 5px rgba(0,242,254,.65)); }
+  .rp-flow--sense  { stroke: var(--rp-sense);  stroke-width: 1.6; stroke-dasharray: 5 13;
+                     animation-duration: .6s; filter: drop-shadow(0 0 4px rgba(46,230,168,.5)); }
+  .rp-flow--power  { stroke: var(--rp-power);  stroke-width: 3;   stroke-dasharray: 14 16;
+                     animation-duration: .8s; filter: drop-shadow(0 0 6px rgba(255,90,69,.55)); }
+  .rp-flow--bus    { stroke: var(--rp-bus);    stroke-width: 3.5; stroke-dasharray: 18 22;
+                     animation-duration: 1s;  filter: drop-shadow(0 0 7px rgba(255,178,36,.55)); }
+
+  /* ---------- Etichette ---------- */
+  .rp-chip { fill: #080c15; stroke: var(--hairline); stroke-width: 1; rx: 5; }
+  .rp-chip-text {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    text-anchor: middle; fill: var(--rp-muted);
+  }
+  .rp-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
+  .rp-tag--end   { text-anchor: end; }
+  .rp-tag--start { text-anchor: start; }
+  .rp-tag--sense  { fill: var(--rp-sense); }
+  .rp-tag--reflex { fill: var(--rp-reflex); }
+  .rp-tag--power  { fill: var(--rp-power); }
+
+  /* ---------- Accessibilità: reduced-motion (regola §0.8 del sito) ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .rp-flow, .rp-bracket, .rp-node--reflex rect.rp-card { animation: none !important; }
+    .rp-flow { stroke-dasharray: none; opacity: .45; }
+    .rp-bracket { stroke: rgba(0,242,254,.5); }
+  }
+</style>
+</head>
+<body>
+
+  <p class="harness-note">
+    <b>Anteprima V2</b> — i riquadri tratteggiati riproducono le misure reali dello slot
+    <b>.hero-visual</b> di index.html. Logica e testi invariati: rivisti solo stile e grafica.
+  </p>
+
+  <div>
+    <span class="frame-label">Desktop — 568 × 500</span>
+    <div class="frame frame--desktop">
+
+      <!-- ==================== COMPONENTE DA INTEGRARE ==================== -->
+      <div class="rp-diagram">
+        <svg viewBox="0 0 780 690" xmlns="http://www.w3.org/2000/svg"
+             preserveAspectRatio="xMidYMid meet" role="img"
+             aria-label="Reflex-Policy architecture: a policy layer supervises PV-side and battery-side local reflex zones through permission envelopes, while sensing, command, power and balancing-bus paths connect physical energy sources to their local reflex logic.">
+
+          <defs>
+            <linearGradient id="rpGradPolicy" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="rgba(139,92,246,.20)"/>
+              <stop offset="100%" stop-color="rgba(139,92,246,.04)"/>
+            </linearGradient>
+            <linearGradient id="rpGradReflex" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="rgba(0,242,254,.22)"/>
+              <stop offset="100%" stop-color="rgba(0,242,254,.05)"/>
+            </linearGradient>
+            <linearGradient id="rpGradPower" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="rgba(255,90,69,.18)"/>
+              <stop offset="100%" stop-color="rgba(255,90,69,.03)"/>
+            </linearGradient>
+            <linearGradient id="rpGradSense" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="rgba(46,230,168,.16)"/>
+              <stop offset="100%" stop-color="rgba(46,230,168,.03)"/>
+            </linearGradient>
+            <pattern id="rpGrid" width="36" height="36" patternUnits="userSpaceOnUse">
+              <path d="M 36 0 L 0 0 0 36" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+            </pattern>
+            <radialGradient id="rpGridFade" cx="50%" cy="45%" r="62%">
+              <stop offset="0%"   stop-color="#fff" stop-opacity=".85"/>
+              <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+            </radialGradient>
+            <mask id="rpMask">
+              <rect x="0" y="0" width="780" height="690" fill="url(#rpGridFade)"/>
+            </mask>
+          </defs>
+
+          <!-- fondo: griglia tecnica sfumata -->
+          <rect x="0" y="0" width="780" height="690" fill="url(#rpGrid)" mask="url(#rpMask)"/>
+
+          <!-- ============ ZONE DI AUTORITÀ DELIMITATA ============ -->
+          <rect class="rp-zone" x="95" y="130" width="250" height="520"/>
+          <path class="rp-bracket" d="M 95 164 L 95 144 Q 95 130 109 130 L 129 130"/>
+          <path class="rp-bracket" d="M 311 130 L 331 130 Q 345 130 345 144 L 345 164"/>
+          <path class="rp-bracket" d="M 95 616 L 95 636 Q 95 650 109 650 L 129 650"/>
+          <path class="rp-bracket" d="M 311 650 L 331 650 Q 345 650 345 636 L 345 616"/>
+          <text class="rp-zone-label" x="220" y="156">PV-SIDE LOCAL REFLEX ZONE</text>
+
+          <rect class="rp-zone" x="435" y="130" width="250" height="520"/>
+          <path class="rp-bracket" d="M 435 164 L 435 144 Q 435 130 449 130 L 469 130"/>
+          <path class="rp-bracket" d="M 651 130 L 671 130 Q 685 130 685 144 L 685 164"/>
+          <path class="rp-bracket" d="M 435 616 L 435 636 Q 435 650 449 650 L 469 650"/>
+          <path class="rp-bracket" d="M 651 650 L 671 650 Q 685 650 685 636 L 685 616"/>
+          <text class="rp-zone-label" x="560" y="156">BATTERY-SIDE LOCAL REFLEX ZONE</text>
+
+          <!-- ============ TRACCE DI BASE ============ -->
+          <path class="rp-trace" d="M 220 560 L 220 403"/>
+          <path class="rp-trace rp-trace--bus" d="M 320 374 L 460 374"/>
+          <path class="rp-trace" d="M 560 403 L 560 560"/>
+
+          <path class="rp-trace" d="M 150 560 L 150 233"/>
+          <path class="rp-trace" d="M 290 233 L 290 345"/>
+          <path class="rp-trace" d="M 630 560 L 630 233"/>
+          <path class="rp-trace" d="M 490 233 L 490 345"/>
+
+          <path class="rp-trace" d="M 330 84 L 330 112 L 220 112 L 220 175"/>
+          <path class="rp-trace" d="M 450 84 L 450 112 L 560 112 L 560 175"/>
+
+          <!-- ============ FLUSSI ANIMATI ============ -->
+          <path class="rp-flow rp-flow--power" d="M 220 560 L 220 403"/>
+          <path class="rp-flow rp-flow--bus"   d="M 320 374 L 460 374"/>
+          <path class="rp-flow rp-flow--power" d="M 560 403 L 560 560"/>
+
+          <path class="rp-flow rp-flow--sense"  d="M 150 560 L 150 233"/>
+          <path class="rp-flow rp-flow--reflex" d="M 290 233 L 290 345"/>
+          <path class="rp-flow rp-flow--sense"  d="M 630 560 L 630 233"/>
+          <path class="rp-flow rp-flow--reflex" d="M 490 233 L 490 345"/>
+
+          <path class="rp-flow rp-flow--policy" d="M 330 84 L 330 112 L 220 112 L 220 175"/>
+          <path class="rp-flow rp-flow--policy" d="M 450 84 L 450 112 L 560 112 L 560 175"/>
+
+          <!-- ============ ETICHETTE ============ -->
+          <rect class="rp-chip" x="209" y="101" width="132" height="22"/>
+          <text class="rp-chip-text" x="275" y="116">Permission Envelope</text>
+          <rect class="rp-chip" x="439" y="101" width="132" height="22"/>
+          <text class="rp-chip-text" x="505" y="116">Permission Envelope</text>
+
+          <rect class="rp-chip" x="329" y="363" width="122" height="22"/>
+          <text class="rp-chip-text" x="390" y="378" fill="#ffb224">DC BALANCING BUS</text>
+
+          <!-- PV side -->
+          <text class="rp-tag rp-tag--end rp-tag--sense"    x="142" y="281">Local Flags</text>
+          <text class="rp-tag rp-tag--end rp-tag--sense"    x="142" y="296">(V, T, Shade)</text>
+          <text class="rp-tag rp-tag--start rp-tag--reflex" x="298" y="281">Bypass /</text>
+          <text class="rp-tag rp-tag--start rp-tag--reflex" x="298" y="296">MPPT Wake</text>
+          <text class="rp-tag rp-tag--end rp-tag--power"    x="212" y="487">Harvested Energy</text>
+
+          <!-- Battery side -->
+          <text class="rp-tag rp-tag--start rp-tag--sense"  x="638" y="281">Local Flags</text>
+          <text class="rp-tag rp-tag--start rp-tag--sense"  x="638" y="296">(V, T, Fault)</text>
+          <text class="rp-tag rp-tag--end rp-tag--reflex"   x="482" y="281">One-Hot</text>
+          <text class="rp-tag rp-tag--end rp-tag--reflex"   x="482" y="296">Route Enable</text>
+          <text class="rp-tag rp-tag--start rp-tag--power"  x="568" y="487">Conditioned Energy</text>
+
+          <!-- ============ NODI ============ -->
+          <g class="rp-node rp-node--policy" transform="translate(250, 24)">
+            <rect class="rp-card" x="0" y="0" width="280" height="60"/>
+            <line class="rp-crest" x1="18" y1="0.6" x2="262" y2="0.6"/>
+            <text class="rp-title" x="140" y="27">POLICY LAYER / MAIN BMS</text>
+            <text class="rp-sub"   x="140" y="45">Supervision, Learning &amp; Safety</text>
+          </g>
+
+          <g class="rp-node rp-node--reflex" transform="translate(120, 175)">
+            <rect class="rp-card" x="0" y="0" width="200" height="58"/>
+            <line class="rp-crest" x1="16" y1="0.6" x2="184" y2="0.6"/>
+            <text class="rp-title" x="100" y="26">PV-SIDE REFLEX</text>
+            <text class="rp-sub"   x="100" y="44">Deterministic Rule Map</text>
+          </g>
+
+          <g class="rp-node rp-node--reflex" transform="translate(460, 175)">
+            <rect class="rp-card" x="0" y="0" width="200" height="58"/>
+            <line class="rp-crest" x1="16" y1="0.6" x2="184" y2="0.6"/>
+            <text class="rp-title" x="100" y="26">BATTERY-SIDE REFLEX</text>
+            <text class="rp-sub"   x="100" y="44">Deterministic Rule Map</text>
+          </g>
+
+          <g class="rp-node rp-node--power" transform="translate(120, 345)">
+            <rect class="rp-card" x="0" y="0" width="200" height="58"/>
+            <line class="rp-crest" x1="16" y1="0.6" x2="184" y2="0.6"/>
+            <text class="rp-title" x="100" y="26">DC-DC CONVERTER</text>
+            <text class="rp-sub"   x="100" y="44">MPPT &amp; Power Conditioning</text>
+          </g>
+
+          <g class="rp-node rp-node--power" transform="translate(460, 345)">
+            <rect class="rp-card" x="0" y="0" width="200" height="58"/>
+            <line class="rp-crest" x1="16" y1="0.6" x2="184" y2="0.6"/>
+            <text class="rp-title" x="100" y="26">ISOLATED INJECTION</text>
+            <text class="rp-sub"   x="100" y="44">Multi-Output Power Stage</text>
+          </g>
+
+          <g class="rp-node rp-node--phys" transform="translate(120, 560)">
+            <rect class="rp-card" x="0" y="0" width="200" height="58"/>
+            <line class="rp-crest" x1="24" y1="0.6" x2="176" y2="0.6"/>
+            <text class="rp-title" x="100" y="26">PV SEGMENTS</text>
+            <text class="rp-sub"   x="100" y="44">Physical Energy Harvest</text>
+          </g>
+
+          <g class="rp-node rp-node--phys" transform="translate(460, 560)">
+            <rect class="rp-card" x="0" y="0" width="200" height="58"/>
+            <line class="rp-crest" x1="24" y1="0.6" x2="176" y2="0.6"/>
+            <text class="rp-title" x="100" y="26">BATTERY CLUSTERS</text>
+            <text class="rp-sub"   x="100" y="44">Physical Energy Storage</text>
+          </g>
+
+        </svg>
+      </div>
+      <!-- ================== FINE COMPONENTE DA INTEGRARE ================== -->
+
+    </div>
+  </div>
+
+  <div>
+    <span class="frame-label">Mobile — 335 × 300</span>
+    <div class="frame frame--mobile">
+      <!-- l'anteprima mobile clona via JS l'SVG qui sopra: unica sorgente del componente -->
+      <div class="rp-diagram" id="rpMobileSlot"></div>
+    </div>
+  </div>
+
+  <script>
+    // Solo anteprima: replica il diagramma nel riquadro mobile.
+    (function () {
+      var source = document.querySelector('.frame--desktop .rp-diagram svg');
+      var slot = document.getElementById('rpMobileSlot');
+      if (!source || !slot) return;
+      var clone = source.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.removeAttribute('role');
+      clone.removeAttribute('aria-label');
+      // rimuove gli id duplicati: i riferimenti url(#...) risolvono sull'originale
+      clone.querySelectorAll('[id]').forEach(function (el) { el.removeAttribute('id'); });
+      slot.appendChild(clone);
+    })();
+  </script>
+
+</body>
+</html>

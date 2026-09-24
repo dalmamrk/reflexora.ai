@@ -1289,3 +1289,44 @@ body::before {
     transition: color 0.2s;
 }
 .footer-legal-links a:hover { color: var(--accent-cyan); }
+
+/* ============================================================
+   Aura decorativa REFLEXORA (hero) — animazione SVG/CSS
+   Solo transform/opacity (GPU-friendly). Palette del sito.
+   ============================================================ */
+.reflex-anim{
+    display:flex; align-items:center; justify-content:center;
+    min-height:440px; height:100%;
+    border-radius:24px;
+    background:radial-gradient(120% 120% at 50% 32%, rgba(0,242,254,.06), transparent 70%);
+    border:1px solid var(--glass-border, rgba(255,255,255,.08));
+}
+.reflexora-aura{ width:min(82%,360px); height:auto; display:block; margin:0 auto; pointer-events:none; }
+.reflexora-aura svg{ display:block; width:100%; height:auto; }
+
+.rx-halo,.rx-spin-outer,.rx-spin-middle,.rx-ripple,.rx-core,.rx-hot,.rx-spec,
+.rx-p-a,.rx-p-b,.rx-p-c{ transform-box:view-box; transform-origin:center; will-change:transform,opacity; }
+
+.rx-halo{animation:rxHalo 7.4s ease-in-out infinite}
+.rx-spin-outer{animation:rxSpinCW 8s linear infinite}
+.rx-spin-middle{animation:rxSpinCCW 7s linear infinite}
+.rx-ripple{animation:rxRipple 6.4s ease-in-out infinite}
+.rx-core{animation:rxCore 6.8s ease-in-out infinite}
+.rx-hot{animation:rxHot 6.1s ease-in-out -0.9s infinite}
+.rx-spec{animation:rxSpec 7s ease-in-out infinite}
+.rx-p-a{animation:rxFloA 7.3s ease-in-out infinite}
+.rx-p-b{animation:rxFloB 6.4s ease-in-out infinite}
+.rx-p-c{animation:rxFloC 7.9s ease-in-out infinite}
+
+@keyframes rxSpinCW{to{transform:rotate(1turn)}}
+@keyframes rxSpinCCW{to{transform:rotate(-1turn)}}
+@keyframes rxHalo{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.05);opacity:.85}}
+@keyframes rxRipple{0%,100%{transform:scale(.99);opacity:.25}50%{transform:scale(1.06);opacity:.65}}
+@keyframes rxCore{0%,100%{transform:scale(.985);opacity:.8}50%{transform:scale(1.055);opacity:1}}
+@keyframes rxHot{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.12);opacity:1}}
+@keyframes rxSpec{0%,100%{opacity:.1}50%{opacity:.3}}
+@keyframes rxFloA{0%,100%{transform:translate(0,0);opacity:.2}50%{transform:translate(0,-12px);opacity:.7}}
+@keyframes rxFloB{0%,100%{transform:translate(0,0);opacity:.6}50%{transform:translate(10px,-8px);opacity:.15}}
+@keyframes rxFloC{0%,100%{transform:translate(0,0);opacity:.25}50%{transform:translate(-9px,11px);opacity:.75}}
+
+@media (prefers-reduced-motion:reduce){ .reflex-anim *{animation:none !important} }

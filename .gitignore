@@ -6,18 +6,3 @@ node_modules/
 # Sorgenti di contenuto (docx/pdf): usate come fonte, NON versionate né pubblicate (D-5, §3.5)
 per testi/
 for_agents.md
-
-# Pipeline multi-agente: staging dei patch GLM, backup e segreti — mai nel repo
-.glm/
-.env
-*.env
-
-# Exclusions requested by user
-*.md
-*.py
-animazione_hero_prototipo*.html
-reflexora-legal/
-animazione_hero_fonti/
-ARTICOLI per testi ancora da lavorare/
-__pycache__/
-*.pdf
