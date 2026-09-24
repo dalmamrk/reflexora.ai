@@ -6,3 +6,20 @@ node_modules/
 # Sorgenti di contenuto (docx/pdf): usate come fonte, NON versionate né pubblicate (D-5, §3.5)
 per testi/
 for_agents.md
+
+# --- Pulizia pre-go-live: sorgenti/lavoro non necessari a servire Pages ---
+# (restano in locale, esclusi dal repo pubblicato)
+*.md
+*.pdf
+*.docx
+*.pyc
+__pycache__/
+.claude/
+build.mjs
+glm_worker.py
+partials/
+analisi_design/
+animazione_hero_fonti/
+animazione_hero_prototipo*.html
+ARTICOLI per testi ancora da lavorare/
+reflexora-legal/
